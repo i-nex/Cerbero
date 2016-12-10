@@ -1,0 +1,12 @@
+' Gambas module file
+
+Public Sub Main()
+  Response.Begin
+  Print Request.Fields.Count
+  Print Request.UserAgent
+  Print Application.Root
+  Print Application.Path
+  'Print File.Load("./.public/css/bootstrap.css")
+  Response.End
+  
+End

@@ -1,0 +1,16 @@
+[Breakpoints]
+Count=0
+
+[DebugWindow]
+Count=0
+
+[OpenFile]
+File[1]=".src/Main.webpage:0.0"
+Active=3
+File[2]=".src/Core.module:24.7"
+Count=3
+File[3]=".src/Config/Config.module:0.6"
+
+[Watches]
+Count=0
+

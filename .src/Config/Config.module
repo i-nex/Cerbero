@@ -1,0 +1,6 @@
+' Gambas module file
+
+Export
+Create Static
+
+'Private Const WEBSITE_ROOT As String = Application.Root
