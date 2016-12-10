@@ -6,6 +6,7 @@ Public Sub Main()
   Print Request.UserAgent
   Print Application.Root
   Print Application.Path
+  Print "AAAAAAAAAAAAAA"
   'Print File.Load("./.public/css/bootstrap.css")
   Response.End
   
