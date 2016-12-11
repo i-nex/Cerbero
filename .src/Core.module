@@ -1,13 +1,70 @@
 ' Gambas module file
 
 Public Sub Main()
-  Response.Begin
-  Print Request.Fields.Count
-  Print Request.UserAgent
-  Print Application.Root
-  Print Application.Path
-  Print "AAAAAAAAAAAAAA"
-  'Print File.Load("./.public/css/bootstrap.css")
-  Response.End
+Dim sField As String
+ Select Case Request.Path
+    
+    Case "/register" ' register a new account
+      Response.ContentType = "text/plain;charset=utf-8"
+      Response.Begin
+      Print "RegisterUser"
+      Response.End
+    Case "/confirm" ' confirm registration
+      Response.ContentType = "text/plain;charset=utf-8"
+      Response.Begin
+      Print "ConfirmRegistration"
+      Response.End
+    Case "/publish" ' publish software
+      
+      
+      
+    Case "/get" ' get info about software
+      
+      
+      
+    Case "/download" ' download software
+      
+      
+      
+    Case "/vote" ' vote or remove a vote for a software
+      
+      
+    
+    Case "/search" ' search for software
+      
+      
+      
+    Case "/tags" ' search for tag
+      
+      
+      
+    Case "/ident"
+      
+      
+      
+    Case "/remove"
+      
+      
+      
+    Case "/ping"
+      
+      
+      
+      
+    Case "/test"
+      
+      Response.ContentType = "text/plain;charset=utf-8"
+      Response.Begin
+      Print "99 This is a test!"
+      For Each sField In Request.Fields
+        Print sField; ": "; Request[sField]
+      Next
+      Response.End
+    
+    Case Else
+      
+      Print "11 Unknown command"
+    
+  End Select
   
 End

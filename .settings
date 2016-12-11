@@ -4,10 +4,13 @@ Count=0
 [DebugWindow]
 Count=0
 
+[Executable]
+Path="Cerbero.gambas"
+
 [OpenFile]
 File[1]=".src/Main.webpage:0.0"
 Active=2
-File[2]=".src/Core.module:24.8"
+File[2]=".src/Core.module:20.13"
 Count=2
 
 [Watches]

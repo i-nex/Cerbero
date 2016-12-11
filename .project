@@ -3,7 +3,7 @@
 Title=Cerbero
 Startup=Core
 UseHttpServer=1
-Version=0.0.1
+Version=0.0.2
 Component=gb.util.web
 Component=gb.web
 Environment="GB_HTTPD_PORT=9000\nLANG=C\nLC_ALL=C"
