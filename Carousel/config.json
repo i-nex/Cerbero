@@ -1,0 +1,25 @@
+{
+  "CAROUSEL": [
+    {
+      "ITEM": "item active",
+      "IMG_ALT": "Carousel Bootstrap First",
+      "IMG_SRC": "/Carousel/images/hardware.jpg",
+      "TITLE": "First Thumbnail label",
+      "TITLE_LONG": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+    },
+    {
+      "ITEM": "item",
+      "IMG_ALT": "268.gif",
+      "IMG_SRC": "/Carousel/images/networking1600x500.jpg",
+      "TITLE": "45 nm",
+      "TITLE_LONG": "47 million"
+    },
+    {
+      "ITEM": "item",
+      "IMG_ALT": "268.gif",
+      "IMG_SRC": "/Carousel/images/Computer-Upgrades.png",
+      "TITLE": "45 nm",
+      "TITLE_LONG": "47 million"
+    }
+  ]
+}

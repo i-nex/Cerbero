@@ -2,6 +2,13 @@
 
 Public Sub Main()
 Dim sField As String
+  CSS.Main()
+  WHead.Head()
+      If Request.Path Like "/Carousel/images/*" Then
+        If Exist(Application.Path &/ Request.Path) Then
+          Response.SendFile(Application.Path &/ Request.Path)
+        Endif
+      Endif
  Select Case Request.Path
     
     Case "/register" ' register a new account
@@ -61,10 +68,12 @@ Dim sField As String
       Next
       Response.End
     
-    Case Else
-      
-      Print "11 Unknown command"
-    
+    Case "/"
+      WCarousel.Carousel()
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.begin
+      WIndex.Render
+      Response.End    
   End Select
   
 End

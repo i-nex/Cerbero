@@ -1,0 +1,32 @@
+' Gambas module file
+
+Public Sub Main()
+  
+    If File.Name(Request.Path) = "bootstrap.css"
+        Response.ContentType = "text/css"
+        Response.Begin
+          Print File.Load(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.css")
+        Response.End
+    Else If File.Name(Request.Path) = "bootstrap.min.css"
+        Response.ContentType = "text/css"
+        Response.Begin
+          Print File.Load(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.min.css")
+        Response.End
+    Else If File.Name(Request.Path) = "custom.min.css"
+        Response.ContentType = "text/css"
+        Response.Begin
+          Print File.Load(Options.ASSETS_PATH & Options.ASSETS_NAME)
+        Response.End
+    Else If File.Name(Request.Path) = "bootstrap.min.js"
+        Response.ContentType = "text/javascript"
+        Response.Begin
+          Print File.Load(Options.BOOTSTRAP_MIN_JAVASCRIPT_PATH)
+        Response.End
+     Else If File.Name(Request.Path) = "bootstrap.js"
+        Response.ContentType = "text/javascript"
+        Response.Begin
+          Print File.Load(Options.BOOTSTRAP_JAVASCRIPT_PATH)
+        Response.End
+    Endif
+  
+End

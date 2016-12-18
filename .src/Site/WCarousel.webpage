@@ -1,0 +1,26 @@
+<%
+Dim i As Integer = 1
+%>
+<div class="carousel slide" id="carousel-702412">
+	<ol class="carousel-indicators">
+		<li class="active" data-slide-to="0" data-target="#carousel-702412"></li>
+		<li data-slide-to="1" data-target="#carousel-702412"></li>
+		<li data-slide-to="2" data-target="#carousel-702412"></li>
+	</ol>
+       <div class="carousel-inner">
+            <%For i = 0 To CAROUSEL_COL["CAROUSEL"].Count - 1 %>
+		<div class="<%Print CAROUSEL_COL["CAROUSEL"][i]["ITEM"]%>">
+			<img alt="<%Print CAROUSEL_COL["CAROUSEL"][i]["IMG_ALT"]%>" src="<%Print CAROUSEL_COL["CAROUSEL"][i]["IMG_SRC"]%>" />
+				<div class="carousel-caption">
+				       <h4>
+						<%Print CAROUSEL_COL["CAROUSEL"][i]["TITLE"]%>
+					</h4>
+				       <p>
+						<%Print CAROUSEL_COL["CAROUSEL"][i]["TITLE_LONG"]%>
+					</p>
+				</div>
+		</div>
+		<%Next%>
+      </div> 
+      <a class="left carousel-control" href="#carousel-702412" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-702412" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>

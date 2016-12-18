@@ -1,0 +1,13 @@
+' Gambas class file
+
+Public Const STYLE_PATH As String = ".public"
+Public Const STYLE_NAME As String = "flatly"
+
+Public Const ASSETS_PATH As String = ".public/assets/css/"
+Public Const ASSETS_NAME As String = "custom.min.css"
+
+Public Const BOOTSTRAP_MIN_JAVASCRIPT_PATH As String = ".public/bower_components/bootstrap/dist/js/bootstrap.min.js"
+Public Const BOOTSTRAP_JAVASCRIPT_PATH As String = ".public/bower_components/bootstrap/dist/js/bootstrap.js"
+
+Public Const SITENAME As String = "Cerbero"
+Public Const SITENAME_LONG As String = "Linux Hardware Database (CLHD)"

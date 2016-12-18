@@ -1,0 +1,18 @@
+<%
+Dim i As Integer
+%>
+<head>
+  <meta charset="utf-8">
+  <title><%Print HEAD_COL["TITLE"]%></title>
+  <%For i = 0 To HEAD_COL["META"].Count - 1%>
+    <meta name="<%=HEAD_COL["META"][i]["Type"]%>" content="<%=HEAD_COL["META"][i]["Content"]%>" />
+  <%Next%>
+  
+  <%For i = 0 To HEAD_COL["LINK"].Count - 1%>
+    <link rel="<%=HEAD_COL["LINK"][i]["rel"]%>" type="<%=HEAD_COL["LINK"][i]["type"]%>" href="<%=HEAD_COL["LINK"][i]["href"]%>" />
+  <%Next%>
+  
+  <%For i = 0 To HEAD_COL["SCRIPT"].Count - 1%>
+    <script  type='<%=HEAD_COL["SCRIPT"][i]["type"]%>' src="<%=HEAD_COL["SCRIPT"][i]["src"]%>"></script>
+  <%Next%>
+</head>

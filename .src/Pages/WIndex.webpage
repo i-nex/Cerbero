@@ -1,0 +1,10 @@
+<<WDoctype>>
+<<WHead>>
+<body>
+<<WHeader>>
+<<WNavbar>>
+<<WCarousel>>	
+<<WJumbotron>>
+<<WFooter>>
+</body>
+</html>
