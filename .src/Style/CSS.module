@@ -4,29 +4,22 @@ Public Sub Main()
   
     If File.Name(Request.Path) = "bootstrap.css"
         Response.ContentType = "text/css"
-        Response.Begin
-          Print File.Load(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.css")
-        Response.End
+          Response.SendFile(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.css")
     Else If File.Name(Request.Path) = "bootstrap.min.css"
         Response.ContentType = "text/css"
-        Response.Begin
-          Print File.Load(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.min.css")
-        Response.End
+          Response.SendFile(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.min.css")
     Else If File.Name(Request.Path) = "custom.min.css"
         Response.ContentType = "text/css"
-        Response.Begin
-          Print File.Load(Options.ASSETS_PATH & Options.ASSETS_NAME)
-        Response.End
+          Response.SendFile(Options.ASSETS_PATH & Options.ASSETS_NAME)
     Else If File.Name(Request.Path) = "bootstrap.min.js"
         Response.ContentType = "text/javascript"
-        Response.Begin
-          Print File.Load(Options.BOOTSTRAP_MIN_JAVASCRIPT_PATH)
-        Response.End
+           Response.SendFile(Options.BOOTSTRAP_MIN_JAVASCRIPT_PATH)
      Else If File.Name(Request.Path) = "bootstrap.js"
         Response.ContentType = "text/javascript"
-        Response.Begin
-          Print File.Load(Options.BOOTSTRAP_JAVASCRIPT_PATH)
-        Response.End
+          Response.SendFile(Options.BOOTSTRAP_JAVASCRIPT_PATH)
+     Else If File.Name(Request.Path) = "custom.js"
+        Response.ContentType = "text/javascript"
+          Response.SendFile(Options.CUSTOM_JAVASCRIPT_PATH)
     Endif
   
 End
