@@ -1,5 +1,19 @@
 Bootswatch
 ==========
+* an asterisk starts an unordered list
+* and this is another item in the list
++ or you can also use the + character
+- or the - character
+
+>To start an ordered list, write this:
+
+1. this starts a list *with* numbers
++  this will show as number "2"
+*  this will show as number "3."
+9. any number, +, -, or * will keep the list going.
+    * just indent by 4 spaces (or tab) to make a sub-list
+        1. keep indenting for more sub lists
+    * here i'm back to the second level
 
 [![Bootswatch Logo](./assets/img/logo-dark.png)](http://bootswatch.com)
 
@@ -15,21 +29,16 @@ You can import a theme into your styles using either LESS or SASS.
 
 LESS:
 
-```
-@import "bootstrap/less/bootstrap.less";
+```@import "bootstrap/less/bootstrap.less";
 @import "bootswatch/theme/variables.less";
-@import "bootswatch/theme/bootswatch.less";
-
-```
+@import "bootswatch/theme/bootswatch.less";```
 
 SASS:
 
-```
-@import "bootswatch/theme/variables";
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
-@import "bootswatch/theme/bootswatch";
 
-```
+`@import "bootswatch/theme/variables";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootswatch/theme/bootswatch";`
 
 
 Customization

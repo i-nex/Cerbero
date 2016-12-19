@@ -60,12 +60,14 @@ Dim sField As String
       
     Case "/test"
       
-      Response.ContentType = "text/plain;charset=utf-8"
+      Response.ContentType = "text/html;charset=utf-8"
       Response.Begin
-      Print "99 This is a test!"
-      For Each sField In Request.Fields
-        Print sField; ": "; Request[sField]
-      Next
+      WDoctype.Render
+      WHead.Render
+      WHeader.Render
+      WNavbar.Render
+      Print Markdown.ToHTML(File.Load(Application.Path & "/.public/README.md"))
+      WFooter.Render
       Response.End
     
     Case "/"

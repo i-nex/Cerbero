@@ -2,8 +2,10 @@ Core
 Cerbero
 0
 0
-0.0.6
+0.0.7
 
+gb.httpd
+gb.markdown
 gb.util.web
 gb.web
 
