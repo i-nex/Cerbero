@@ -2,7 +2,6 @@
 
 Public CAROUSEL_COL As Collection
 Public Sub Carousel()
-  Print Application.Dir
   CAROUSEL_COL = JSON.Decode(File.Load(Application.Path & "/Carousel/config.json"))
 End
 

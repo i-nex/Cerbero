@@ -1,0 +1,122 @@
+{
+  "version": "3.3.6",
+  "MENU": [
+    {
+      "Position": "nav navbar-nav",
+      "LINKS": [
+            {
+            "Class": "active",
+            "href": "#",
+            "text": "1 lnk"
+            },
+            {
+            "Class": "dropdown",
+            "Config": 0
+            },
+            {
+            "Class": "Null",
+            "href": "#",
+            "text": "2 lnk"
+            }
+      ]
+    },
+    {
+      "Position": "nav navbar-nav navbar-right",
+      "LINKS": [
+            {
+            "Class": "dropdown",
+            "Config": 2
+            },
+            {
+            "Class": "active",
+            "href": "#",
+            "text": "3 lnk"
+            },
+            {
+            "Class": "Null",
+            "href": "#",
+            "text": "4 lnk"
+            },
+            {
+            "Class": "Null",
+            "href": "#",
+            "text": "5 lnk"
+            },
+            {
+            "Class": "dropdown",
+            "Config": 1
+            }
+      ]
+    }
+  ],
+  "DROPDOWN_MENU": [
+        {
+            "href": "absolete",
+            "class": "dropdown-toggle",
+            "data-toggle": "dropdown",
+            "text": "My 1 Dropdown",
+            "strong_class": "caret",
+            "LINKS": [
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "First"
+                },
+                {
+                "Class": "divider",
+                },
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "Two"
+                }
+            ]
+            
+        },
+        {
+            "href": "absolete",
+            "class": "dropdown-toggle",
+            "data-toggle": "dropdown",
+            "text": "My 2 Dropdown",
+            "strong_class": "caret",
+            "LINKS": [
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "Three"
+                },
+                {
+                "Class": "divider",
+                },
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "Four"
+                }
+            ]
+        },
+        {
+            "href": "absolete",
+            "class": "dropdown-toggle",
+            "data-toggle": "dropdown",
+            "text": "My 3 Dropdown",
+            "strong_class": "caret",
+            "LINKS": [
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "Five"
+                },
+                {
+                "Class": "divider",
+                },
+                {
+                "Class": "Null",
+                "href": "#",
+                "text": "Six"
+                }
+            ]
+            
+        }
+  ]
+}

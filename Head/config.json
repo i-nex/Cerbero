@@ -23,7 +23,7 @@
         {
             "rel": "stylesheet",
             "type": "text/css",
-            "href": "bootstrap.min.css"
+            "href": "/flatly/bootstrap.min.css"
         },
         {
             "rel": "stylesheet",
@@ -42,11 +42,11 @@
         },
         {
             "type": "text/javascript",
-            "src": "bootstrap.min.js"
+            "src": "/bower_components/bootstrap/dist/js/bootstrap.min.js"
         },
         {
             "type": "text/javascript",
-            "src": "custom.js"
+            "src": "/assets/js/custom.js"
         }
     ],
     "type": "component",

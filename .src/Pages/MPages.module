@@ -1,2 +1,80 @@
 ' Gambas module file
 
+Public Sub Main()
+  Dim i As Integer
+  Dim dupa As String
+   Select Case Request.Path
+    
+    Case "/register" ' register a new account
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin
+      WRegister.Render
+      Response.End
+    Case "/confirm" ' confirm registration
+      Response.ContentType = "text/plain;charset=utf-8"
+      Response.Begin
+      Print "ConfirmRegistration"
+      Response.End
+    Case "/publish" ' publish software
+      
+      
+      
+    Case "/get" ' get info about software
+      
+    Case "/login"
+      Response.Begin
+        WLogin.Render
+      Response.End
+    Case "/download" ' download software
+      
+      
+      
+    Case "/vote" ' vote or remove a vote for a software
+      
+      
+    
+    Case "/search" ' search for software
+      
+      
+      
+    Case "/tags" ' search for tag
+      
+      
+      
+    Case "/ident"
+      
+      
+      
+    Case "/remove"
+      
+      
+      
+    Case "/Validate"
+      Response.Begin
+        WValidate.Render
+      Response.End
+      
+      
+      
+    Case "/test"
+      
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin
+      WDoctype.Render
+      WHead.Render
+      WHeader.Render
+      WNavbar.Render
+      Print Markdown.ToHTML(File.Load(Application.Path & "/.public/README.md"))
+      WFooter.Render
+      Response.End
+    
+    Case "/"
+      WNavbar.Navbar()
+      WCarousel.Carousel()
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.begin
+      WIndex.Render
+      Response.End    
+  End Select
+  
+End

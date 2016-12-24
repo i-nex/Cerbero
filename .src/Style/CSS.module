@@ -1,25 +1,71 @@
 ' Gambas module file
 
 Public Sub Main()
-  
-    If File.Name(Request.Path) = "bootstrap.css"
-        Response.ContentType = "text/css"
-          Response.SendFile(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.css")
-    Else If File.Name(Request.Path) = "bootstrap.min.css"
-        Response.ContentType = "text/css"
-          Response.SendFile(Options.STYLE_PATH & "/" & Options.STYLE_NAME & "/bootstrap.min.css")
-    Else If File.Name(Request.Path) = "custom.min.css"
-        Response.ContentType = "text/css"
-          Response.SendFile(Options.ASSETS_PATH & Options.ASSETS_NAME)
-    Else If File.Name(Request.Path) = "bootstrap.min.js"
-        Response.ContentType = "text/javascript"
-           Response.SendFile(Options.BOOTSTRAP_MIN_JAVASCRIPT_PATH)
-     Else If File.Name(Request.Path) = "bootstrap.js"
-        Response.ContentType = "text/javascript"
-          Response.SendFile(Options.BOOTSTRAP_JAVASCRIPT_PATH)
-     Else If File.Name(Request.Path) = "custom.js"
-        Response.ContentType = "text/javascript"
-          Response.SendFile(Options.CUSTOM_JAVASCRIPT_PATH)
+    Dim Path As String
+     ' Handle resource files: images, style sheet...
+    Path = Request.Path
+    
+    If Path Like "/Carousel/images/*" Then
+      If Exist(Application.Path &/ Path) Then
+        Response.SendFile(Application.Path &/ Path, GetContentTypeFrom(Path))
+      Endif
     Endif
+    
+    If Not Path = "/" Then
+        If Path And If Exist(".public" &/ Path) Then
+          Response.SendFile(".public" &/ Path, GetContentTypeFrom(Path))
+        Return
+      Endif
+    Endif
+End
+
+Private Sub GetContentTypeFrom(sPath As String) As String
+  
+  Select Case Lower(File.Ext(sPath))
+    Case "css"
+      Return "text/css"
+    Case "jpg", "jpeg", "jpe", "thumb"
+      Return "image/jpeg"
+    Case "png"
+      Return "image/png"
+    Case "gif"
+      Return "image/gif"
+    Case "tiff", "tif"
+      Return "image/tiff"
+    Case "odt"
+      Return "application/vnd.oasis.opendocument.text"
+    Case "doc"
+      Return "application/msword"
+    Case "ods"
+      Return "application/vnd.oasis.opendocument.spreadsheet"
+    Case "xls"
+      Return "application/msexcel"
+    Case "pdf"
+      Return "application/pdf"
+    Case "zip"
+      Return "application/zip"
+    Case "html", "htm"
+      Return "text/html"
+    Case "txt"
+      Return "text/plain"
+    Case "avi"
+      Return "video/x-msvideo"
+    Case "mpg", "mpeg"
+      Return "video/mpeg"
+    Case "ps"
+      Return "application/postscript"
+    Case "dwg"
+      Return "application/acad"
+    Case "wav"
+      Return "audio/x-wav"
+    Case "ogg"
+      Return "application/ogg"
+    Case "jar"
+      Return "application/x-jar"
+    'Case "xml", "kml"
+    '  Return "text/plain"
+    Case Else 
+      Return "application/octet-stream"
+  End Select
   
 End
