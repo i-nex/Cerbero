@@ -4,8 +4,10 @@ Title=Cerbero
 Startup=Core
 UseHttpServer=1
 Version=0.0.10
+Component=gb.crypt
 Component=gb.httpd
 Component=gb.markdown
+Component=gb.openssl
 Component=gb.util.web
 Component=gb.web
 Environment="GB_HTTPD_PORT=9000\nLANG=C\nLC_ALL=C"

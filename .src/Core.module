@@ -1,10 +1,8 @@
 ' Gambas module file
 
 Public Sub Main()
-Dim sField As String
   CSS.Main()
   WHead.Head()
   MPages.Main()
-  
-  
+  Debug Base64$(Digest["sha256"]("27081991"))
 End

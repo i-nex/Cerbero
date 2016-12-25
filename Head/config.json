@@ -18,35 +18,66 @@
         {
             "rel": "icon",
             "type": "image/png",
-            "href": "favicon.png"
+            "href": "favicon.png",
+            "visible_for": "all",
+            "page": 0
         },
         {
             "rel": "stylesheet",
             "type": "text/css",
-            "href": "/flatly/bootstrap.min.css"
+            "href": "/flatly/bootstrap.min.css",
+            "visible_for": "all",
+            "page": 0
         },
         {
             "rel": "stylesheet",
             "type": "text/css",
-            "href": "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+            "href": "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css",
+            "visible_for": "all",
+            "page": 0
+        },
+        {
+            "rel": "stylesheet",
+            "type": "text/css",
+            "href": "/flatly/validate.css",
+            "visible_for": "all",
+            "page": "Validate"
+        },
+        {
+            "rel": "stylesheet",
+            "type": "text/css",
+            "href": "/flatly/footer.css",
+            "visible_for": "all",
+            "page": 0
+        },
+        {
+            "rel": "stylesheet",
+            "type": "text/css",
+            "href": "/flatly/admin.css",
+            "visible_for": "admin",
+            "page": 0
         }
     ],
     "SCRIPT": [
         {
             "type": "text/javascript",
-            "src": "https://code.jquery.com/jquery-1.10.2.min.js"
+            "src": "https://code.jquery.com/jquery-1.10.2.min.js",
+            "page": 0
         },
         {
             "type": "text/javascript",
-            "src": "https//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+            "src": "https//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js",
+            "page": 0
         },
         {
             "type": "text/javascript",
-            "src": "/bower_components/bootstrap/dist/js/bootstrap.min.js"
+            "src": "/bower_components/bootstrap/dist/js/bootstrap.min.js",
+            "page": 0
         },
         {
             "type": "text/javascript",
-            "src": "/assets/js/custom.js"
+            "src": "/assets/js/custom.js",
+            "page": 0
         }
     ],
     "type": "component",

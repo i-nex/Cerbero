@@ -1,7 +1,7 @@
 ' Gambas class file
 
 Public Const STYLE_PATH As String = ".public"
-Public Const STYLE_NAME As String = "flatly"
+Public Const STYLE_NAME As String = "custom"
 
 Public Const ASSETS_PATH As String = ".public/assets/css/"
 Public Const ASSETS_NAME As String = "custom.min.css"

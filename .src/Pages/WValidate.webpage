@@ -253,3 +253,4 @@
 <<WFooter>>
 </body>
 </html>
+<%Try WNavbar.NAVBAR_COL.Clear%>

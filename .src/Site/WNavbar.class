@@ -2,5 +2,12 @@
 
 Public NAVBAR_COL As Collection
 Public Sub Navbar()
+  Try NAVBAR_COL.Clear
   NAVBAR_COL = JSON.Decode(File.Load(Application.Path & "/Navbar/config.json"))
+End
+
+Public Sub _new()
+  
+  Navbar()
+  
 End

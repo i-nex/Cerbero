@@ -4,8 +4,10 @@ Cerbero
 0
 0.0.10
 
+gb.crypt
 gb.httpd
 gb.markdown
+gb.openssl
 gb.util.web
 gb.web
 

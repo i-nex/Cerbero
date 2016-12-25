@@ -22,9 +22,12 @@ Public Sub Main()
     Case "/get" ' get info about software
       
     Case "/login"
-      Response.Begin
-        WLogin.Render
-      Response.End
+       Response.ContentType = "text/html;charset=utf-8"
+       Response.Begin
+              WLogin.Render
+       Response.End
+    Case "/logind"
+       MLogin.Login()
     Case "/download" ' download software
       
       
@@ -69,8 +72,6 @@ Public Sub Main()
       Response.End
     
     Case "/"
-      WNavbar.Navbar()
-      WCarousel.Carousel()
       Response.ContentType = "text/html;charset=utf-8"
       Response.begin
       WIndex.Render

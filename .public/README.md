@@ -29,9 +29,9 @@ You can import a theme into your styles using either LESS or SASS.
 
 LESS:
 
-```@import "bootstrap/less/bootstrap.less";
-@import "bootswatch/theme/variables.less";
-@import "bootswatch/theme/bootswatch.less";```
+`@import "bootstrap/less/bootstrap.less";`
+`@import "bootswatch/theme/variables.less";`
+`@import "bootswatch/theme/bootswatch.less";`
 
 SASS:
 

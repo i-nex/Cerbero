@@ -5,3 +5,8 @@ Public Sub Carousel()
   CAROUSEL_COL = JSON.Decode(File.Load(Application.Path & "/Carousel/config.json"))
 End
 
+Public Sub _new()
+  
+  Carousel()
+  
+End

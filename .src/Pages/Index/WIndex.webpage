@@ -2,6 +2,9 @@
 
 <<WHead>>
 <body>
+<%If Session["role"] = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
 <<WHeader>>
 <<WNavbar>>
 <<WCarousel>>	
