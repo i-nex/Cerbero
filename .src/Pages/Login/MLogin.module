@@ -1,35 +1,43 @@
 ' Gambas module file
 
-Public USER_PROFILE_DATA As Collection
 Public Sub Login()
   Dim USERNAME As String = Request.Post["username"]
   Dim PASSWORD As String = Request.Post["password"]
-  Debug "Calling to login form"
-  
-  If Request["username"] And If Request["password"] Then
-     Session.Abandon
-     
-       If Exist(Application.Path & "/Users/" & USERNAME & "/config.json") Then
-              USER_PROFILE_DATA = JSON.Decode(File.Load(Application.Path & "/Users/" & USERNAME & "/config.json"))
-              If Base64$(Digest["sha256"](PASSWORD)) = USER_PROFILE_DATA["password"] Then
-                    Session["username"] = USER_PROFILE_DATA["username"]
-                    Session["role"] = USER_PROFILE_DATA["properties"][0]["role"]
-                    Session["longname"] = USER_PROFILE_DATA["properties"][0]["longname"]
-                    Session["email"] = USER_PROFILE_DATA["properties"][0]["email"]
-                    Session["emailVerified"] = USER_PROFILE_DATA["properties"][0]["emailVerified"]
-                    Session["verificationToken"] = USER_PROFILE_DATA["properties"][0]["verificationToken"]
-                    Response.Redirect(Application.Root)
-              Else
-                    Response.Redirect(Application.Root &/ "login")
-              Endif
-             
-              
-       Else
-              Response.Redirect(Application.Root &/ "login")
-       Endif
+  Dim rUser As Result
+   
+  If Not USERNAME Then
+    Response.Redirect(Application.Root &/ "login?alert=1")
+    Return
   Endif
-
+  If Not PASSWORD Then
+    Response.Redirect(Application.Root &/ "login?alert=2")
+    Return
+  Endif
   
+  MDatabase.OpenDatabase()
+  rUser = DB.Edit("users", "username = &1", USERNAME)
+  If Not rUser.Available Then
+    Response.Redirect(Application.Root &/ "login?alert=4")
+    Return
+  Endif
   
+  If rUser!emailVerified = False Then
+    Response.Redirect(Application.Root &/ "login?alert=4")
+  Endif
+  
+  If rUser.Available Then
+    If rUser!password = Base64$(Digest["sha256"](PASSWORD)) Then
+       Session["username"] = rUser!username
+       Session["role"] = rUser!role
+       Session["firstname"] = rUser!firstname
+       Session["lastname"] = rUser!lastname
+       Session["email"] = rUser!email
+       Session["avatar"] = rUser!avatar
+       Session["emailVerified"] = rUser!emailVerified
+       Session["verificationToken"] = rUser!verificationToken
+       Response.Redirect(Application.Root)
+    Else
+      Response.Redirect(Application.Root &/ "login?alert=4")
+    Endif
+  Endif
 End
-

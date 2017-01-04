@@ -1,13 +1,33 @@
 {
+  "ID": "carousel-702412",
+  "CLASS": "carousel slide",
+  "LEFT": {
+    "CLASS": "left carousel-control",
+    "HREF": "#carousel-702412",
+    "DATA_SLIDE": "prev",
+    "ICON": "glyphicon glyphicon-chevron-left"
+  },
+  "RIGHT": {
+    "CLASS": "right carousel-control",
+    "HREF": "#carousel-702412",
+    "DATA_SLIDE": "next",
+    "ICON": "glyphicon glyphicon-chevron-right"
+  },
   "CAROUSEL": [
     {
+      "CLASS": "active",
+      "DATA_SLIDE_TO": "0",
+      "DATA_TARGET": "#carousel-702412",
       "ITEM": "item active",
       "IMG_ALT": "Carousel Bootstrap First",
       "IMG_SRC": "/Carousel/images/hardware.jpg",
-      "TITLE": "First Thumbnail label",
+      "TITLE": "DUPA JASIA, hI HI HI",
       "TITLE_LONG": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
     },
     {
+      "CLASS": "",
+      "DATA_SLIDE_TO": "1",
+      "DATA_TARGET": "#carousel-702412",
       "ITEM": "item",
       "IMG_ALT": "268.gif",
       "IMG_SRC": "/Carousel/images/networking1600x500.jpg",
@@ -15,6 +35,19 @@
       "TITLE_LONG": "47 million"
     },
     {
+      "CLASS": "",
+      "DATA_SLIDE_TO": "2",
+      "DATA_TARGET": "#carousel-702412",
+      "ITEM": "item",
+      "IMG_ALT": "268.gif",
+      "IMG_SRC": "/Carousel/images/networking1600x500.jpg",
+      "TITLE": "45 nm",
+      "TITLE_LONG": "47 million"
+    },
+    {
+      "CLASS": "",
+      "DATA_SLIDE_TO": "3",
+      "DATA_TARGET": "#carousel-702412",
       "ITEM": "item",
       "IMG_ALT": "268.gif",
       "IMG_SRC": "/Carousel/images/Computer-Upgrades.png",

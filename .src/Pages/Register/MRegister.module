@@ -1,0 +1,92 @@
+' Gambas module file
+
+Public Sub Register()
+  Dim email As String
+  Dim username As String
+  Dim password As String
+  Dim confirm As String
+  Dim firstname As String
+  Dim lastname As String
+  Dim uniqueid As String
+  Dim rUser As Result
+  Dim confirmemail As New SmtpClient
+  email = Request["email"]
+  username = Request["username"]
+  password = Request["password"]
+  confirm = Request["confirm"]
+  firstname = Request["firstname"]
+  lastname = Request["lastname"]
+  uniqueid = MFunctions.Randomkey
+  ''email username password confirm name 
+  
+  If Session.Id Then
+      Response.Redirect(Application.Root)
+  Endif
+  
+  If IsSpace(email) Then
+      Response.Redirect(Application.Root &/ "register?alert=1")
+      Return
+  Endif
+  If Not username Then
+      Response.Redirect(Application.Root &/ "register?alert=2")
+      Return
+  Endif
+  If Not password Then
+      Response.Redirect(Application.Root &/ "register?alert=3")
+      Return
+  Endif
+  If Not confirm Then
+      Response.Redirect(Application.Root &/ "register?alert=4")
+      Return
+  Endif
+  If Not confirm = password Then
+      Response.Redirect(Application.Root &/ "register?alert=5")
+      Return
+  Endif
+  If Not MFunctions.CheckEMail(email) Then
+      Response.Redirect(Application.Root &/ "register?alert=6")
+      Return
+  Endif
+  If Not firstname Then firstname = username
+  MDatabase.OpenDatabase()
+   rUser = DB.Create("users")
+   rUser!username = username
+   rUser!password = Base64$(Digest["sha256"](password))
+   rUser!firstname = firstname
+   rUser!lastname = lastname
+   rUser!email = email
+   rUser!verificationToken = uniqueid
+   Try rUser.Update
+     If Error Then
+      Response.Begin
+      Response.Redirect(Application.Root &/ "register?alert=7")
+      Response.End
+     Endif
+  
+   With confirmemail
+     .Add("Linux Hardware Database (CLHD)")
+     .Body = "Hi,\n\n"
+    "You have requested a Cerbero account.\n"
+    "Please click on the following link to confirm your registration:\n\n"
+    "http://" & Application.Host &/ Application.Root &/ "confirm?key=" & URL.Encode(uniqueid) & "&login=" & URL.Encode(username) & "\n\n"
+     .To.Add(email)
+     .From = "eloaders@i-nex.pl"
+     .Subject = "Cerbero registration request"
+     .Encrypt = Net.SSL
+     .Port = Options["mailport"]
+     .Host = Options["mailhost"]
+     .User = Options["mailuser"]
+     .Password = Options["mailpassword"]
+   End With
+
+   Try confirmemail.Send
+   If Error Then
+    Try DB.Delete("users", "username = &1", username)
+    Response.Redirect(Application.Root &/ "register?alert=8")
+    Return
+   Endif
+
+  Response.Begin
+  Response.Redirect(Application.Root &/ "register?alert=9")
+  Response.End
+End

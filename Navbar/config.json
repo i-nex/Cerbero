@@ -6,15 +6,13 @@
       "LINKS": [
             {
             "Class": "active",
-            "href": "#",
-            "text": "1 lnk"
-            },
-            {
-            "Class": "dropdown",
-            "Config": 0
+            "Icon": "fa fa-th-list",
+            "href": "profile",
+            "text": "Profile"
             },
             {
             "Class": "Null",
+            "Icon": "",
             "href": "#",
             "text": "2 lnk"
             }
@@ -25,25 +23,35 @@
       "LINKS": [
             {
             "Class": "dropdown",
+            "Icon": "",
             "Config": 2
             },
             {
             "Class": "active",
+            "Icon": "",
             "href": "#",
             "text": "3 lnk"
             },
             {
             "Class": "Null",
+            "Icon": "fa fa-lg fa-eercast",
             "href": "#",
-            "text": "4 lnk"
+            "text": "Mój odnośnik"
             },
             {
             "Class": "Null",
+            "Icon": "fa fa-th-list",
             "href": "#",
             "text": "5 lnk"
             },
             {
             "Class": "dropdown",
+            "Icon": "fa fa-th-list",
+            "Config": 1
+            },
+            {
+            "Class": "user",
+            "Icon": "fa fa-th-list",
             "Config": 1
             }
       ]
@@ -59,6 +67,7 @@
             "LINKS": [
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "First"
                 },
@@ -67,6 +76,7 @@
                 },
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "Two"
                 }
@@ -82,6 +92,7 @@
             "LINKS": [
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "Three"
                 },
@@ -90,6 +101,7 @@
                 },
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "Four"
                 }
@@ -104,6 +116,7 @@
             "LINKS": [
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "Five"
                 },
@@ -112,6 +125,7 @@
                 },
                 {
                 "Class": "Null",
+                "Icon": "fa fa-th-list",
                 "href": "#",
                 "text": "Six"
                 }

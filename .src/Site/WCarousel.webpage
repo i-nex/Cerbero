@@ -1,11 +1,16 @@
 <%
 Dim i As Integer = 1
 %>
-<div class="carousel slide" id="carousel-702412">
+<div class="<%= CAROUSEL_COL["CLASS"]%>" id="<%= CAROUSEL_COL["ID"]%>">
 	<ol class="carousel-indicators">
-		<li class="active" data-slide-to="0" data-target="#carousel-702412"></li>
-		<li data-slide-to="1" data-target="#carousel-702412"></li>
-		<li data-slide-to="2" data-target="#carousel-702412"></li>
+		<%For i = 0 To CAROUSEL_COL["CAROUSEL"].Count - 1%>
+		<%If CAROUSEL_COL["CAROUSEL"][i]["CLASS"] = "active" Then%>
+		<li class="<%= CAROUSEL_COL["CAROUSEL"][i]["CLASS"] %>" data-slide-to="<%= CAROUSEL_COL["CAROUSEL"][i]["DATA_SLIDE_TO"] %>" data-target="<%= CAROUSEL_COL["CAROUSEL"][i]["DATA_TARGET"] %>"></li>
+		<%Else%>
+		<li data-slide-to="<%= CAROUSEL_COL["CAROUSEL"][i]["DATA_SLIDE_TO"] %>" data-target="<%= CAROUSEL_COL["CAROUSEL"][i]["DATA_TARGET"] %>"></li>
+		<%Endif%>
+
+		<%Next%>
 	</ol>
        <div class="carousel-inner">
             <%For i = 0 To CAROUSEL_COL["CAROUSEL"].Count - 1 %>
@@ -22,5 +27,6 @@ Dim i As Integer = 1
 		</div>
 		<%Next%>
       </div> 
-      <a class="left carousel-control" href="#carousel-702412" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-702412" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a class="<%= CAROUSEL_COL["LEFT"]["CLASS"]%>" href="<%= CAROUSEL_COL["LEFT"]["HREF"]%>" data-slide="<%= CAROUSEL_COL["LEFT"]["DATA_SLIDE"]%>"><span class="<%= CAROUSEL_COL["LEFT"]["ICON"]%>"></span></a> 
+      <a class="<%= CAROUSEL_COL["RIGHT"]["CLASS"]%>" href="<%= CAROUSEL_COL["RIGHT"]["HREF"]%>" data-slide="<%= CAROUSEL_COL["RIGHT"]["DATA_SLIDE"]%>"><span class="<%= CAROUSEL_COL["RIGHT"]["ICON"]%>"></span></a>
 </div>

@@ -1,8 +1,55 @@
 ' Gambas module file
 
+Public Settings As New Settings(Application.Path & "/Cerbero.settings")
+Private $Connection As New Connection
 Public Sub Main()
+  
+  $Connection = Connections["Cerbero"]
+  $Connection.Password = Settings["mysql/password"]
+  $Connection.Open
+  DB.Current = $Connection
+  
   CSS.Main()
   WHead.Head()
   MPages.Main()
-  Debug Base64$(Digest["sha256"]("27081991"))
+End
+
+Public Function USER_AVATAR_PATH() As String
+  Dim USER_PROFILE_DATA As Collection
+  Dim USERNAME As String
+  If Session.Id Then
+     USERNAME = Session["username"] 
+     USER_PROFILE_DATA = JSON.Decode(File.Load(Application.Path & "/Users/" & USERNAME & "/config.json"))
+     If USER_PROFILE_DATA["avatar"] = "True" Then
+       Return "/.avatars/" & USER_PROFILE_DATA["username"] & "/avatar.png"
+     Else
+       Return ""
+     Endif
+  Endif
+End
+
+Public Sub DBC()
+   Dim rSoftware As Result
+   Dim rValidate As Result
+   Dim uniqueid As String
+   uniqueid = MFunctions.getrandom()
+  MDatabase.OpenDatabase()
+
+  rValidate = DB.Create("cpuid")
+  rValidate!brand_str = "Intel(R) Atom(TM) CPU N270   @ 1.60GHz"
+  rValidate!vendor_str = "GenuineIntel"
+  rValidate!family = "6"
+  rValidate!stepping = "2"
+  rValidate!uniqueid = uniqueid
+  rValidate.Update
+  DB.Commit
+  
+  rSoftware = DB.Find("cpuid", "uniqueid LIKE &2", 0, "%" & uniqueid & "%")
+  
+  Response.Begin
+  For Each rSoftware
+    Print rSoftware!brand_str & "\n"
+  Next
+  Response.End
+    
 End

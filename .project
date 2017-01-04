@@ -1,16 +1,24 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.9.1
+# Compiled with Gambas 3.9.2
 Title=Cerbero
 Startup=Core
-UseHttpServer=1
-Version=0.0.10
+Version=0.0.32
+Component=gb.image
 Component=gb.crypt
+Component=gb.db
+Component=gb.settings
 Component=gb.httpd
+Component=gb.net
 Component=gb.markdown
+Component=gb.net.smtp
 Component=gb.openssl
+Component=gb.pcre
 Component=gb.util.web
 Component=gb.web
-Environment="GB_HTTPD_PORT=9000\nLANG=C\nLC_ALL=C"
+Environment="GB_HTTPD_PORT=10000\nLANG=C\nLC_ALL=C"
 TabSize=2
+Translate=1
 Language=en_US
+ControlPublic=1
+ModulePublic=1
 Packager=1

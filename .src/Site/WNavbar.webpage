@@ -13,7 +13,7 @@ Dim Config_For_This_Dropdown As Integer
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 					</button> 
-					<a class="navbar-brand" href="/"><%Print Options.SITENAME%></a>
+					<a class="navbar-brand" href="/"><%Print Options["sitename"]%></a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -22,9 +22,21 @@ Dim Config_For_This_Dropdown As Integer
 					  <%For i2 = 0 To NAVBAR_COL["MENU"][i]["LINKS"].Count - 1%>
 					 
 					       <%If NAVBAR_COL["MENU"][i]["LINKS"][i2]["Class"] = "active" Then%>
-					             <li class="active"><a href="<%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["href"]%>"><%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["text"]%></a></li>
+					             <li class="active">
+					             <a href="<%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["href"]%>">
+					             <%If Not NAVBAR_COL["MENU"][i]["LINKS"][i2]["Icon"] = ""%>
+					             <i class="<%= NAVBAR_COL["MENU"][i]["LINKS"][i2]["Icon"]%>"></i>
+					             <%Endif%>
+					             <%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["text"]%></a>
+					             </li>
 					       <%Else If NAVBAR_COL["MENU"][i]["LINKS"][i2]["Class"] = "Null" Then%>
-					             <li><a href="<%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["href"]%>"><%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["text"]%></a></li>
+					             <li><a href="<%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["href"]%>">
+					             <%If Not NAVBAR_COL["MENU"][i]["LINKS"][i2]["Icon"] = "" Then%>
+					              <i class="<%= NAVBAR_COL["MENU"][i]["LINKS"][i2]["Icon"]%>"></i>
+					             <%Endif%>
+					             <%=NAVBAR_COL["MENU"][i]["LINKS"][i2]["text"]%></a>
+					             </li>
+					       
 					       <%Else If NAVBAR_COL["MENU"][i]["LINKS"][i2]["Class"] = "dropdown" Then%>
 					             <li class="dropdown">
 							
@@ -36,13 +48,19 @@ Dim Config_For_This_Dropdown As Integer
                                                           <%If NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["Class"] = "divider" Then%>
                                                                 <li class="divider"></li>
                                                           <%Else If NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["Class"] = "Null" Then%>
-                                                                <li><a href="<%=NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["href"] %>"><%=NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["text"] %></a></li>
+                                                                <li><a href="<%=NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["href"] %>">
+                                                                <%If Not NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["Icon"] = "" Then%>
+                                                                <i class="<%= NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["Icon"]%>"></i>
+                                                                <%Endif%>
+                                                                <%=NAVBAR_COL["DROPDOWN_MENU"][Config_For_This_Dropdown]["LINKS"][i3]["text"] %></a></li>
                                                           <%Endif%>
                                                           <%Next%>
 							       </ul>
 						      </li>
+						<%Else If NAVBAR_COL["MENU"][i]["LINKS"][i2]["Class"] = "user" Then%>
+						<<WUserNavbar>>
 					       <%Endif%>
-					 
+					       
 					  <%Next%>
 					 </ul>
 					<%Next%>

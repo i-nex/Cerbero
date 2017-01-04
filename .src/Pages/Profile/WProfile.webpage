@@ -1,0 +1,152 @@
+<<WDoctype>>
+
+<<WHead>>
+<body>
+<%If rUser!role = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
+<<WHeader>>
+<<WNavbar>>
+  <h1 class="page-header">Edit Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="<%= rUser!avatar%>" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="/profile" novalidate="novalidate">
+            <input type="file" name="uploadavatar" class="text-center center-block well well-sm">
+            <input class="btn btn-primary" value="<%=("Upload")%>" type="submit">
+        </form>
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <%If $Error Then%>
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        <strong><%=$Error%></strong>
+      </div>
+      <%Endif%>
+      <div>
+      <!-- Nav tabs -->
+        <ul class="nav nav-pills nav-justified" role="tablist">
+          <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile<i class="fa fa-user-circle fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#changepassword" aria-controls="changepassword" role="tab" data-toggle="tab">Change password<i class="fa fa-low-vision fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages<i class="fa fa-envelope fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings<i class="fa fa-cogs fa-lg pull-left"></i></a></li>
+        </ul>
+
+      <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Tab home begin-->
+          <div role="tabpanel" class="tab-pane fade in active" id="profile">
+            <h3>Personal info</h3>
+            <form class="form-horizontal" role="form" method="POST" action="/profile" novalidate="novalidate">
+            <div class="form-group">
+            <label class="col-md-3 control-label" for="username">Username:</label>
+               <div class="col-md-8 input-group">
+                <span class="input-group-addon"><i class="fa fa-cogs fa-lg"></i></span>
+                <input class="form-control" id="username" type="text" placeholder="<%= rUser!username%>" disabled="">
+               </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">First name:</label>
+              <div class="col-lg-8">
+                <input class="form-control"  id="firstname" name="firstname" value="<%= rUser!firstname%>" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label"><%=("Last name:")%></label>
+              <div class="col-lg-8">
+                <input class="form-control" id="lastname" name="lastname" value="<%= rUser!lastname%>" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+              <div class="col-lg-8">
+                <input class="form-control" id="email" name="email" value="<%= rUser!email%>" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+              <div class="col-md-8">
+                <input class="btn btn-primary" value="Save Changes" type="submit">
+                <span></span>
+                <input class="btn btn-default" value="Cancel" type="reset">
+              </div>
+            </div>
+          </form>
+          </div>
+          <!-- Tab profile end-->
+          <!-- Tab changepassword begin-->
+          <div role="tabpanel" class="tab-pane fade" id="changepassword">
+          <h3>Change password</h3>
+            <form class="form-horizontal" role="form" method="POST" action="/profile" novalidate="novalidate">
+            <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+              <div class="col-md-8">
+                <input class="form-control"  id="newpassword" name="newpassword" value="" type="password">
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+              <div class="col-md-8">
+                <input class="form-control" id="confirmnewpassword" name="confirmnewpassword" value="" type="password">
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+              <div class="col-md-8">
+                <input class="btn btn-primary" value="Change password" type="submit">
+                <span></span>
+                <input class="btn btn-default" value="Cancel" type="reset">
+              </div>
+            </div>
+          </form>
+          </div>
+          <!-- Tab changepassword end-->
+          <!-- Tab messages begin-->
+          <div role="tabpanel" class="tab-pane fade" id="messages">
+          ...
+          </div>
+          <!-- Tab messages end-->
+          <!-- Tab settings begin-->
+          <div role="tabpanel" class="tab-pane fade" id="settings">
+          ..<h3>User Settings</h3>
+            <form class="form-horizontal" role="form" method="POST" action="/profile" novalidate="novalidate">
+            <div class="form-group">
+            <label class="col-md-3 control-label">Avatar</label>
+              <div class="col-md-8">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                    Use uploaded Avatar
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    Use gravatar
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+              <div class="col-md-8">
+                <input class="btn btn-primary" value="Save" type="submit">
+              </div>
+            </div>
+          </form>
+          </div>
+          <!-- Tab settings end-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<<WFooter>>
+</body>
+</html>

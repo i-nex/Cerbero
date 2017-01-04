@@ -1,0 +1,36 @@
+' Gambas class file
+
+Public Message As String
+Public Sub _new()
+  Dim sLogin As String
+  Dim sKey As String
+  Dim rUser As Result
+  
+  MDatabase.OpenDatabase()
+  
+  sLogin = Request["login"]
+  sKey = Request["key"]
+  If Not sLogin Then Goto FINAL
+  If Not sKey Then Goto FINAL
+  rUser = DB.Edit("users", "username = &1", sLogin)
+  If Not rUser.Available Then
+    Message = "I'm sorry, but I have not found User"
+    Return
+  Endif
+  
+  If rUser!verificationToken <> sKey Then
+    Message = "I'm sorry, but entered the wrong verification code"
+    Return
+  Endif
+
+  rUser!emailVerified = True
+  rUser!verificationToken = ""
+  rUser.Update
+
+  Message = "Welcome " & Html(rUser!username) & "! Your account has been successfully activated."
+  Message &= "You can now login to your account"
+  Return
+FINAL:
+  Message = "Error"
+  Return
+End

@@ -1,0 +1,12 @@
+[Connection]
+Type="mysql"
+Path="/home/michal/Pulpit/Cerbero"
+RememberPassword=True
+IgnoreCharset=True
+DisplayMetadata=True
+RememberTemplate=True
+Database="admin_cerbero"
+Host="i-nex.pl"
+User="admin_cerbero"
+Requests=[""]
+

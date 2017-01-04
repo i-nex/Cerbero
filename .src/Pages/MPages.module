@@ -1,74 +1,95 @@
 ' Gambas module file
 
 Public Sub Main()
-  Dim i As Integer
-  Dim dupa As String
    Select Case Request.Path
-    
+    Case "/logout"
+       If Session.Id Then
+         Session.Abandon
+       Endif
+       Response.AddHeader("Content-Type", "text/html; charset=UTF-8")
+       Response.Redirect(Application.Root)
+    Case "/confirm" ' confirm registration
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin
+            WConfirm.Render
+      Response.End
+    Case "/profile" ' publish software  
+      If Session.Id Then
+            Response.ContentType = "text/html;charset=utf-8"
+            
+
+            Response.Begin
+                    WProfile.Render
+            Response.End  
+      Else
+            Response.Redirect(Application.Root)
+      Endif
+      
+      
+    Case "/admin" ' get info about software
+      If Session["role"] = "admin" Then
+             Response.ContentType = "text/html;charset=utf-8"
+             Response.Begin
+                    WAdmin.Render
+             Response.End  
+      Else
+             Response.Redirect(Application.Root)
+      Endif
+      
+    Case "/login"
+       If Session.Id Then
+         Session.Abandon
+       Endif
+
+       Response.ContentType = "text/html;charset=utf-8"
+       Response.Begin()
+             WLogin.Render
+       Response.End()
+
+    Case "/logind"
+       MLogin.Login()
     Case "/register" ' register a new account
+      If Session.Id Then
+         Session.Abandon
+      Endif
       Response.ContentType = "text/html;charset=utf-8"
       Response.Begin
       WRegister.Render
       Response.End
-    Case "/confirm" ' confirm registration
-      Response.ContentType = "text/plain;charset=utf-8"
-      Response.Begin
-      Print "ConfirmRegistration"
-      Response.End
-    Case "/publish" ' publish software
-      
-      
-      
-    Case "/get" ' get info about software
-      
-    Case "/login"
-       Response.ContentType = "text/html;charset=utf-8"
-       Response.Begin
-              WLogin.Render
-       Response.End
-    Case "/logind"
-       MLogin.Login()
-    Case "/download" ' download software
-      
-      
-      
-    Case "/vote" ' vote or remove a vote for a software
-      
-      
-    
+    Case "/registerd" ' download software
+       MRegister.Register()
+    Case "/vote" ' vote or remove a vote for a software    
     Case "/search" ' search for software
-      
-      
-      
     Case "/tags" ' search for tag
-      
-      
-      
     Case "/ident"
-      
-      
-      
-    Case "/remove"
-      
-      
-      
+      Response.Begin
+      Print MFunctions.getrandom()
+      Response.End
+    Case "/dba"
+        ' MDatabase.OpenDatabase()
+        ' rOptions = DB.Edit("options")
+        ' DB.Debug = True
+        Response.ContentType = "text/plain;charset=utf-8"
+        Response.begin
+        ' For Each rOptions
+        '   Print rOptions!option_name & " : " & rOptions!option_value
+        '   ColOptions.Add(rOptions!option_value, rOptions!option_name)
+        ' Next
+        
+          Print "\n"
+          Print Options["mailuser"]
+          Print Options["sitename"]
+          Print Options["mailhost"]
+          Print Options["mailport"]
+          Print Options["mailport"]
+          Options["mailhost"] = "i-nex.pl"
+          Print Options.Exist("mailport")
+          Print Options.Exist("szmata")
+
+        Response.End    
     Case "/Validate"
       Response.Begin
         WValidate.Render
-      Response.End
-      
-      
-      
-    Case "/test"
-      
-      Response.ContentType = "text/html;charset=utf-8"
-      Response.Begin
-      WDoctype.Render
-      WHead.Render
-      WHeader.Render
-      WNavbar.Render
-      Print Markdown.ToHTML(File.Load(Application.Path & "/.public/README.md"))
-      WFooter.Render
       Response.End
     
     Case "/"
@@ -77,5 +98,8 @@ Public Sub Main()
       WIndex.Render
       Response.End    
   End Select
-  
+  Catch
+    Response.Begin
+    Print "12 Unexpected error\n\n" & Error.Text & "\n\n" & Error.Backtrace.Join("\n")
+    Response.End
 End

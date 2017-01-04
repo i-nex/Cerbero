@@ -1,19 +1,25 @@
 {
-  "username": "eloaders",
-  "password": "dFqgg0CLrwd1FRNaL+M2AyaDJ5AS1PseIfw8cu7yi1U=",
+  "username": "",
+  "password": "",
+  "firstname": "",
+  "lastname": "",
+  "team": "",
+  "email": "",
   "properties": [
     {
-      "role": "admin",
-      "longname": "Michał Głowienka",
-      "email": "eloaders@linux.pl",
-      "emailVerified": "true",
-      "verificationToken": ""
+      "role": "",
+      "longname": "",
+      "email": "",
+      "emailVerified": ""
     }
   ],
   "options": {
     "caseSensitiveEmail": true
   },
-  "hidden": ["password", "verificationToken"],
+  "hidden": [
+    "password",
+    "verificationToken"
+  ],
   "acls": [
     {
       "principalType": "ROLE",
@@ -85,5 +91,6 @@
         "disableInclude": true
       }
     }
-  }
+  },
+  "avatar": "True"
 }

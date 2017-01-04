@@ -1,0 +1,14 @@
+' Gambas module file
+
+
+Export
+Public Sub OpenDatabase()
+  
+  ' If $hConn Then Return
+  ' 
+  ' $hConn = Connections["Cerbero"]
+  ' $hConn.Password = 
+  ' $hConn.Open
+  ' DB.Current = $hConn
+  
+End

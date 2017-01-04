@@ -1,0 +1,30 @@
+<<WDoctype>>
+
+<<WHead>>
+<body>
+<%If Session["role"] = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
+<<WHeader>>
+<<WNavbar>>
+
+<div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel"><%= ("Confirm Account on Cerbero")%></h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="well">
+                        <%= Message%>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<<WFooter>>
+</body>
+</html>

@@ -1,0 +1,8 @@
+' Gambas class file
+
+' Gambas class file
+Public er As String = Null
+Public Sub _new()
+  Dim ReturnUrl As String = "http://localhost:10000/register"
+  Print URL.SetQuery(ReturnUrl, "g", "44")
+End

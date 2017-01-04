@@ -1,0 +1,86 @@
+' Gambas class file
+
+Public $Error As String
+Public username As String = Session["username"]
+Public uniqueid As String
+Public rUser As Result
+Public Sub _new()
+  Dim Field As String
+
+  MDatabase.OpenDatabase()
+  rUser = DB.Edit("users", "username = &1", username)
+
+  If rUser.Available Then
+    If Request.Exist("uploadavatar") = True Then
+      If MFunctions.IsMimeType(Request.Files["uploadavatar"], "image/png") = True Then
+        If Exist(Application.Path & "/.avatars/" & Session["username"]) = True Then
+          ''Avatar Height and Width mus be in maximum 192px
+          If ImageStat(Request.Files["uploadavatar"]).Width <= 200 And ImageStat(Request.Files["uploadavatar"]).Height <= 200 Then
+           
+          ''Remove existing avatar
+          Try Kill Application.Path &/ ".avatars/" & Session["username"] & "/avatar.png"
+          Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
+          rUser!avatar = "/.avatars" &/ Application.Root &/ URL.Encode(rUser!username) &/ "avatar.png"
+            Try rUser.Update
+            If Error Then
+              $Error = "Cannot change avatar"
+            Endif
+          Endif
+        Else
+          If ImageStat(Request.Files["uploadavatar"]).Width <= 200 And ImageStat(Request.Files["uploadavatar"]).Height <= 200 Then
+          Try Mkdir Application.Path & "/.avatars/" & Session["username"]
+          Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
+          rUser!avatar = "/.avatars" &/ Application.Root &/ URL.Encode(rUser!username) &/ "avatar.png"
+            Try rUser.Update
+            If Error Then
+              $Error = "Cannot change avatar"
+            Endif
+          Endif
+        Endif
+      Endif
+    Endif
+  Endif
+  ''firstname lastname team email username
+  If rUser.Available Then
+    For Each Field In Request.Fields
+      If Field = "firstname" Then
+        If Len(Request.Post["firstname"]) >= 4 And IsSpace(Request.Post["firstname"]) = False Then
+         rUser!firstname = Request.Post["firstname"]
+        Endif
+      Endif
+      If Field = "lastname" Then
+        If Len(Request.Post["lastname"]) >= 4 And IsSpace(Request.Post["lastname"]) = False Then
+         rUser!lastname = Request.Post["lastname"] 
+        Endif
+      Endif
+      ' If Field = "team" Then
+      '    USER_CONFIG["team"] = Request.Post["team"]
+      ' Endif
+      If Field = "email" And Not Request["email"] = "" Or IsSpace(Request["email"]) Then
+         If MFunctions.CheckEMail(Request.Post["email"]) = True Then
+           rUser!email = Request.Post["email"]
+         Endif
+      Endif
+    Next
+    Try rUser.Update
+     If Error Then
+      $Error = "Something went wrong, contact to site administrator"
+     Endif
+  Endif
+  ''newpassword confirmnewpassword 
+  If rUser.Available Then
+    If Request.Post.Exist("newpassword") = True And Request.Post.Exist("confirmnewpassword") = True Then
+      If IsSpace(Request.Post["newpassword"]) = False And IsSpace(Request.Post["confirmnewpassword"]) = False Then
+        If Len(Request.Post["newpassword"]) >= 6 And Len(Request.Post["confirmnewpassword"]) >= 6 Then
+          If Request.Post["newpassword"] = Request.Post["confirmnewpassword"] Then
+            rUser!password = Base64$(Digest["sha256"](Request.Post["newpassword"])) 
+            Try rUser.Update
+            If Error Then
+              $Error = "something went wrong"
+            Endif
+          Endif
+        Endif
+      Endif
+    Endif
+  Endif
+End

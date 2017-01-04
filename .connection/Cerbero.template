@@ -1,0 +1,523 @@
+# Gambas Database Template File 3.0
+{ Table
+  Name="__gb_metadata_v2"
+  Type="InnoDB"
+  PrimaryKey=["sTableName","iType","sKey"]
+  { Field
+    Name="sTableName"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="iType"
+    Type=db.Integer
+  }
+  { Field
+    Name="sKey"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="sValue"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+}
+{ Table
+  Name="cpuid"
+  Type="MyISAM"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Serial
+  }
+  { Field
+    Name="vendor_str"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="vendor_id"
+    Type=db.Integer
+  }
+  { Field
+    Name="brand_str"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="family"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="stepping"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="ext_family"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="ext_model"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="num_cores"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="num_logical"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="tot_logical"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l1d_cache"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l1i_cache"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l2_cache"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l3_cache"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l4_cache"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l1d_assoc"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l2_assoc"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l3_assoc"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l4_assoc"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l1d_line_sz"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l2_line_sz"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l3_line_sz"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="l4_line_sz"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="sse_units"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="code_name"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="features"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="uniqueid"
+    Type=db.String
+    Length=255
+    Collation="utf8_general_ci"
+  }
+  { Index 
+    Name="id"
+    Unique=True
+    Fields=["id"]
+  }
+  { Index 
+    Name="uniqueid"
+    Unique=True
+    Fields=["uniqueid"]
+  }
+}
+{ Table
+  Name="options"
+  Type="InnoDB"
+  PrimaryKey=["option_id"]
+  { Field
+    Name="option_id"
+    Type=db.Serial
+  }
+  { Field
+    Name="option_name"
+    Type=db.String
+    Length=191
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="option_value"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="autoload"
+    Type=db.String
+    Length=20
+    Collation="utf8_general_ci"
+  }
+  { Index 
+    Name="options_Indeks1"
+    Unique=True
+    Fields=["option_id"]
+  }
+  { Index 
+    Name="option_name_2"
+    Unique=True
+    Fields=["option_name"]
+  }
+  { Index 
+    Name="option_name"
+    Unique=False
+    Fields=["option_name"]
+  }
+}
+{ Table
+  Name="system"
+  Type="InnoDB"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Serial
+  }
+  { Field
+    Name="distro_vendor"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="distro_release"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="desktop_environment"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="window_manager"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="window_manager_theme"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gtk2_theme"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gtk3_theme"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gtk_font"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gtk_icons"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="system_shell"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gcc_version"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="hostname"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="arch"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="time_zone"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="xorg_version"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="glx_version"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="linux_c_library"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="gnu_make_version"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="ppp"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="dynamic_linker_ldd"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="net_tools"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="wireless_tools"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="binutils"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="uniqueid"
+    Type=db.String
+    Length=255
+    Collation="utf8_general_ci"
+  }
+  { Index 
+    Name="id"
+    Unique=True
+    Fields=["id"]
+  }
+  { Index 
+    Name="uniqueid"
+    Unique=True
+    Fields=["uniqueid"]
+  }
+}
+{ Table
+  Name="users"
+  Type="MyISAM"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Serial
+  }
+  { Field
+    Name="role"
+    Type=db.String
+    Length=8
+    Default="user"
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="username"
+    Type=db.String
+    Length=16
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="email"
+    Type=db.String
+    Length=48
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="password"
+    Type=db.String
+    Length=128
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="name"
+    Type=db.String
+    Length=64
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="firstname"
+    Type=db.String
+    Length=128
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="lastname"
+    Type=db.String
+    Length=128
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="confirm"
+    Type=db.String
+    Length=64
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="emailVerified"
+    Type=db.Boolean
+    Default=False
+  }
+  { Field
+    Name="verificationToken"
+    Type=db.String
+    Length=64
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="avatar"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="admin"
+    Type=db.Boolean
+    Default=False
+  }
+  { Index 
+    Name="id"
+    Unique=True
+    Fields=["id"]
+  }
+  { Index 
+    Name="user_Index_login"
+    Unique=True
+    Fields=["username"]
+  }
+}
+{ Table
+  Name="validate"
+  Type="MyISAM"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Serial
+  }
+  { Field
+    Name="brand_str"
+    Type=db.String
+    Length=64
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="family"
+    Type=db.String
+    Length=128
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="fullname"
+    Type=db.String
+    Length=32
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="admin"
+    Type=db.Integer
+  }
+  { Field
+    Name="comments"
+    Type=db.String
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="lastlogin"
+    Type=db.String
+    Length=32
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="emailaddress"
+    Type=db.String
+    Length=32
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="cookie"
+    Type=db.String
+    Length=64
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="options1"
+    Type=db.Integer
+  }
+  { Field
+    Name="tfasecret"
+    Type=db.String
+    Length=16
+    Collation="utf8_general_ci"
+  }
+  { Field
+    Name="tfaenabled"
+    Type=db.Boolean
+    Default=False
+  }
+  { Index 
+    Name="brand_str"
+    Unique=True
+    Fields=["brand_str"]
+  }
+}

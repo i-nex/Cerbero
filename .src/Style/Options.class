@@ -1,14 +1,73 @@
 ' Gambas class file
 
-Public Const STYLE_PATH As String = ".public"
-Public Const STYLE_NAME As String = "custom"
+Export
+Create Static
 
-Public Const ASSETS_PATH As String = ".public/assets/css/"
-Public Const ASSETS_NAME As String = "custom.min.css"
+Public Sub Init()
+        'MDatabase.OpenDatabase()
+End
 
-Public Const BOOTSTRAP_MIN_JAVASCRIPT_PATH As String = ".public/bower_components/bootstrap/dist/js/bootstrap.min.js"
-Public Const BOOTSTRAP_JAVASCRIPT_PATH As String = ".public/bower_components/bootstrap/dist/js/bootstrap.js"
 
-Public Const SITENAME As String = "Cerbero"
-Public Const SITENAME_LONG As String = "Linux Hardware Database (CLHD)"
-Public Const CUSTOM_JAVASCRIPT_PATH As String = ".public/assets/js/custom.js"
+Public Sub Delete(option_name As String)
+        Dim rOptions As Result
+        Init()
+        rOptions = DB.Edit("options", "option_name = &1", option_name)
+        Try rOptions.Delete
+        If Error Then Return
+End
+
+
+Public Sub Add(option_name As String, option_value As String)
+        Dim rOptions As Result
+        Init()
+        rOptions = DB.Create("options")
+        rOptions!option_name = option_name
+        rOptions!option_value = option_value
+        Try rOptions.Update
+        If Error Then Return
+End
+
+Public Sub Exist(option_name As String) As Boolean
+        Dim rOptions As Result
+        Init()
+        rOptions = DB.Edit("options", "option_name = &1", option_name)
+        If Not rOptions.Available Then
+          Return False
+        Endif
+        Return True
+End
+
+
+Public Sub _get(option_name As String) As String
+        Dim rOptions As Result
+        Init()
+        rOptions = DB.Edit("options", "option_name = &1", option_name)
+        If Not rOptions.Available Then
+          Return
+        Endif
+        Return rOptions!option_value
+End
+
+Public Sub _put(option_value As String, option_name As String)
+        Dim rOptions As Result
+        Init()
+        rOptions = DB.Edit("options", "option_name = &1", option_name)
+        If Not rOptions.Available Then
+          Return
+        Else
+          rOptions!option_value = option_value
+          rOptions.Update
+          Return
+        Endif
+        Return
+End
+
+Public Sub GetAll()
+        Dim rOptions As Result
+        Dim Collect As Collection
+        Init()
+        rOptions = DB.Edit("options")
+        For Each rOptions
+          Print rOptions!option_value
+        Next
+End

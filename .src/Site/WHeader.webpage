@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container"  style="padding-top: 60px;">
   <div class="row clearfix">
     <div class="col-md-12 column">
       <div class="page-header">
         <h1>
-          <%Print Options.SITENAME%> <small><%Print Options.SITENAME_LONG%></small>
+          <%Print Options["sitename"]%> <small><%Print Options["sitedescription"]%></small>
         </h1>
       </div>
     </div>

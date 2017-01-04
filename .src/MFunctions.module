@@ -1,0 +1,85 @@
+' Gambas module file
+
+Export
+
+Property Read Randomkey As String
+
+Private Function Randomkey_Read() As String
+  Dim uniqueid As String
+  Dim I As Integer
+  Randomize
+  For I = 1 To 6
+       uniqueid &= Hex$(Int(Rnd(65536)), 4)
+  Next
+  Return uniqueid
+End
+
+Public Function CheckEMail(email As String) As Boolean
+
+  'Dim regex As New Regexp(email, "^[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}$")
+  'RegExp.Match(email, "^[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}$")
+  Return RegExp.Match(email, "^[a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}$")
+
+End
+
+Public Function IsMimeType($file As String, ...) As Boolean
+  
+  Dim data, s As String
+  Exec ["file", "-i", $file] To data
+  
+  For Each s In Param
+    If InStr(data, s) Then Return True
+  Next
+  
+  Return False
+  
+End
+
+Public Function GravatarAV(email As String, Optional Size As String) As String
+  Dim AVHash As String
+  Dim $URL As String = "https://secure.gravatar.com/avatar/"
+  Shell "echo -n " & email & " | tr '[:upper:]' '[:lower:]' | md5sum" Wait To AVHash
+  AVHash = Replace(Replace(Replace(Replace(AVHash, "\t", ""), "-", ""), "\n", ""), " ", "")
+  If IsNull(Size) Then
+    Return $URL & AVHash
+  Else
+    Return $URL & AVHash & "?s=" & Size
+  Endif
+End
+
+' Public Sub SMTP_SendMail(sName As String, sEmail As String, sKey As String, sLogin As String)
+'   Dim hSmtpClient As SmtpClient
+'     hSmtpClient = New SmtpClient
+'   
+'   hSmtpClient.Host = "i-nex.pl"
+'   hSmtpClient.Port = 587
+'   hSmtpClient.User = "eloaders"
+'   hSmtpClient.Password = "27081991"
+'   ' Select Case Settings["/SMTP/Encrypt"]
+'   '   Case "SSL"
+'   '     hSmtpClient.Encrypt = Net.SSL
+'   '   Case "TLS"
+'       hSmtpClient.Encrypt = Net.TLS
+'   'End Select
+'   
+'   hSmtpClient.From = "noreply@"
+'   If Application.Host = "localhost" Then
+'     hSmtpClient.From &= "gambaswiki.org"
+'   Else
+'     hSmtpClient.From &= Application.Host
+'   Endif
+'   hSmtpClient.To.Add(sName & " <" & sEmail & ">")
+'   hSmtpClient.Subject = "Gambas farm registration confirmation"
+'   hSmtpClient.Body = "Hi,\n\n"
+'     "You have requested a Gambas farm account.\n"
+'     "Please click on the following link to confirm your registration:\n\n"
+'     "http://" & Application.Host &/ Application.Root &/ "confirm?key=" & URL.Encode(sKey) & "&login=" & URL.Encode(sLogin) & "\n\n"
+'   
+'   Try hSmtpClient.Send
+'   If Error Then
+'     Try DB.Delete("user", "login = &1", sLogin)
+'     PrintError("15 Cannot send confirmation mail\n" & sErr)
+'     Return
+'   Endif
+'   
+' End

@@ -17,6 +17,16 @@ Public Sub Main()
         Return
       Endif
     Endif
+    
+    
+    
+    
+    If Path Like "/.avatars/*" Then
+        If Path And If Exist(Application.Path & Path) Then
+          Response.SendFile(Application.Path & Path, GetContentTypeFrom(Path))
+        Return
+      Endif
+    Endif
 End
 
 Private Sub GetContentTypeFrom(sPath As String) As String
