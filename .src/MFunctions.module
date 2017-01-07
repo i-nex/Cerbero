@@ -38,6 +38,8 @@ End
 Public Function GravatarAV(email As String, Optional Size As String) As String
   Dim AVHash As String
   Dim $URL As String = "https://secure.gravatar.com/avatar/"
+  'AVHash = LCase(Crypt.MD5(email))
+  'AVHash = LCase(Base64$(Digest["md5"](email)))
   Shell "echo -n " & email & " | tr '[:upper:]' '[:lower:]' | md5sum" Wait To AVHash
   AVHash = Replace(Replace(Replace(Replace(AVHash, "\t", ""), "-", ""), "\n", ""), " ", "")
   If IsNull(Size) Then
@@ -47,39 +49,26 @@ Public Function GravatarAV(email As String, Optional Size As String) As String
   Endif
 End
 
-' Public Sub SMTP_SendMail(sName As String, sEmail As String, sKey As String, sLogin As String)
-'   Dim hSmtpClient As SmtpClient
-'     hSmtpClient = New SmtpClient
-'   
-'   hSmtpClient.Host = "i-nex.pl"
-'   hSmtpClient.Port = 587
-'   hSmtpClient.User = "eloaders"
-'   hSmtpClient.Password = "27081991"
-'   ' Select Case Settings["/SMTP/Encrypt"]
-'   '   Case "SSL"
-'   '     hSmtpClient.Encrypt = Net.SSL
-'   '   Case "TLS"
-'       hSmtpClient.Encrypt = Net.TLS
-'   'End Select
-'   
-'   hSmtpClient.From = "noreply@"
-'   If Application.Host = "localhost" Then
-'     hSmtpClient.From &= "gambaswiki.org"
-'   Else
-'     hSmtpClient.From &= Application.Host
-'   Endif
-'   hSmtpClient.To.Add(sName & " <" & sEmail & ">")
-'   hSmtpClient.Subject = "Gambas farm registration confirmation"
-'   hSmtpClient.Body = "Hi,\n\n"
-'     "You have requested a Gambas farm account.\n"
-'     "Please click on the following link to confirm your registration:\n\n"
-'     "http://" & Application.Host &/ Application.Root &/ "confirm?key=" & URL.Encode(sKey) & "&login=" & URL.Encode(sLogin) & "\n\n"
-'   
-'   Try hSmtpClient.Send
-'   If Error Then
-'     Try DB.Delete("user", "login = &1", sLogin)
-'     PrintError("15 Cannot send confirmation mail\n" & sErr)
-'     Return
-'   Endif
-'   
-' End
+Public Function DisqusAV(username As String)
+  Dim hClient As HttpClient
+  Dim sBuffer As String
+
+  hClient = New HttpClient As "hClient"
+  hClient.URL = "https://disqus.com/api/users/avatars/" & username & ".jpg"
+  hClient.Async = False
+  hClient.Timeout = 60
+  hClient.Get
+  Print #hClient, Lof(hClient)
+  ' Print "Begin"
+  ' If hClient.Status < 0 Then
+  '   Print "ERROR"
+  ' Else
+  '   ' Success - read the data
+  '   If Lof(hClient) Then sBuffer = Read #hClient, Lof(hClient)
+  '   Print sBuffer
+  ' End If
+  ' 
+  ' Print "end"
+  
+  
+End

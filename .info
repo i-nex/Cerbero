@@ -24,12 +24,16 @@ GravatarAV
 M
 s
 (email)s[(Size)s]
+DisqusAV
+M
+
+(username)s
 #Options
 
 CA
-Init
-m
-
+WEBSITE_ROOT
+r
+s
 
 Delete
 m
@@ -51,7 +55,7 @@ _put
 m
 
 (option_value)s(option_name)s
-GetAll
+AllOptions
 m
 
 

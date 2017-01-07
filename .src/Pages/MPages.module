@@ -1,6 +1,7 @@
 ' Gambas module file
 
 Public Sub Main()
+  Dim sEnv As String
    Select Case Request.Path
     Case "/logout"
        If Session.Id Then
@@ -58,40 +59,23 @@ Public Sub Main()
       Response.End
     Case "/registerd" ' download software
        MRegister.Register()
-    Case "/vote" ' vote or remove a vote for a software    
-    Case "/search" ' search for software
-    Case "/tags" ' search for tag
     Case "/ident"
       Response.Begin
       Print MFunctions.getrandom()
       Response.End
     Case "/dba"
-        ' MDatabase.OpenDatabase()
-        ' rOptions = DB.Edit("options")
-        ' DB.Debug = True
         Response.ContentType = "text/plain;charset=utf-8"
         Response.begin
-        ' For Each rOptions
-        '   Print rOptions!option_name & " : " & rOptions!option_value
-        '   ColOptions.Add(rOptions!option_value, rOptions!option_name)
-        ' Next
+        Print Request.Path
+        Print Application.Path &/ ".public" & Request.Path
+        Print Application.Path
+        Print Application.Root
+        Print Application.Root
         
-          Print "\n"
-          Print Options["mailuser"]
-          Print Options["sitename"]
-          Print Options["mailhost"]
-          Print Options["mailport"]
-          Print Options["mailport"]
-          Options["mailhost"] = "i-nex.pl"
-          Print Options.Exist("mailport")
-          Print Options.Exist("szmata")
-
+        For Each sEnv In Application.Env
+          Print sEnv & Application.Env[sEnv]
+        Next
         Response.End    
-    Case "/Validate"
-      Response.Begin
-        WValidate.Render
-      Response.End
-    
     Case "/"
       Response.ContentType = "text/html;charset=utf-8"
       Response.begin

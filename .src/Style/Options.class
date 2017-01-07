@@ -2,15 +2,17 @@
 
 Export
 Create Static
+Property Read WEBSITE_ROOT As String
 
-Public Sub Init()
-        'MDatabase.OpenDatabase()
+Private Sub WEBSITE_ROOT_Read() As String
+  
+  Return Settings["website/root"]
+  
 End
-
 
 Public Sub Delete(option_name As String)
         Dim rOptions As Result
-        Init()
+        
         rOptions = DB.Edit("options", "option_name = &1", option_name)
         Try rOptions.Delete
         If Error Then Return
@@ -19,7 +21,7 @@ End
 
 Public Sub Add(option_name As String, option_value As String)
         Dim rOptions As Result
-        Init()
+        
         rOptions = DB.Create("options")
         rOptions!option_name = option_name
         rOptions!option_value = option_value
@@ -29,7 +31,7 @@ End
 
 Public Sub Exist(option_name As String) As Boolean
         Dim rOptions As Result
-        Init()
+        
         rOptions = DB.Edit("options", "option_name = &1", option_name)
         If Not rOptions.Available Then
           Return False
@@ -40,7 +42,7 @@ End
 
 Public Sub _get(option_name As String) As String
         Dim rOptions As Result
-        Init()
+        
         rOptions = DB.Edit("options", "option_name = &1", option_name)
         If Not rOptions.Available Then
           Return
@@ -50,7 +52,7 @@ End
 
 Public Sub _put(option_value As String, option_name As String)
         Dim rOptions As Result
-        Init()
+        
         rOptions = DB.Edit("options", "option_name = &1", option_name)
         If Not rOptions.Available Then
           Return
@@ -62,12 +64,33 @@ Public Sub _put(option_value As String, option_name As String)
         Return
 End
 
-Public Sub GetAll()
-        Dim rOptions As Result
-        Dim Collect As Collection
-        Init()
-        rOptions = DB.Edit("options")
-        For Each rOptions
-          Print rOptions!option_value
-        Next
+Public Sub AllOptions()
+         Dim rOptions As Result
+         Dim i As Integer
+         Dim all_options As Integer
+         Dim option_id As New Long[]
+         Dim option_name As New String[]
+         Dim option_value As New String[]
+         Dim c As New Collection
+        Dim s As String = "{ \"MENU\": [ ] }"
+         rOptions = DB.Edit("options")
+         c = JSON.Decode(s)
+         For Each rOptions
+           c["MENU"].Add(rOptions!option_name, rOptions!option_id)
+           option_id.Add(rOptions!option_id)
+           option_name.Add(rOptions!option_name)
+           option_value.Add(rOptions!option_value)
+         Next
+         For all_options = 0 To option_id.Count - 1
+           Print option_id[all_options]
+           Print option_name[all_options] 
+           Print option_value[all_options]
+         Next
+
+         'File.Save(Application.Path &/ "Options.json", JSON.Encode(rrr))
+        
+        
+        
+        
+        Print JSON.Encode(c)
 End

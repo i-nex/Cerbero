@@ -4,7 +4,6 @@ Public rUser As Result
 Public Sub _new()
   Dim username As String
   username = Session["username"]
-  MDatabase.OpenDatabase()
   rUser = DB.Edit("users", "username = &1", username)
   If Not rUser.Available Then
     Return

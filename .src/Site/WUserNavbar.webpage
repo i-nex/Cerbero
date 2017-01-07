@@ -20,6 +20,11 @@
                                         <p class="text-left">
                                             <a href="<%= Application.Root &/ "logout"%>" class="btn btn-primary btn-block btn-sm">Logout</a>
                                         </p>
+                                        <%If rUser!admin = True Then%>
+                                        <p class="text-left">
+                                            <a href="<%= Application.Root &/ "admin"%>" class="btn btn-danger btn-block btn-sm">Admin Panel</a>
+                                        </p>
+                                        <%Endif%>
                                     </div>
                                 </div>
                             </div>

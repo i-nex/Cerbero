@@ -20,7 +20,7 @@ Public Sub _new()
           ''Remove existing avatar
           Try Kill Application.Path &/ ".avatars/" & Session["username"] & "/avatar.png"
           Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
-          rUser!avatar = "/.avatars" &/ Application.Root &/ URL.Encode(rUser!username) &/ "avatar.png"
+          rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
             Try rUser.Update
             If Error Then
               $Error = "Cannot change avatar"
@@ -30,7 +30,7 @@ Public Sub _new()
           If ImageStat(Request.Files["uploadavatar"]).Width <= 200 And ImageStat(Request.Files["uploadavatar"]).Height <= 200 Then
           Try Mkdir Application.Path & "/.avatars/" & Session["username"]
           Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
-          rUser!avatar = "/.avatars" &/ Application.Root &/ URL.Encode(rUser!username) &/ "avatar.png"
+          rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
             Try rUser.Update
             If Error Then
               $Error = "Cannot change avatar"
@@ -53,20 +53,33 @@ Public Sub _new()
          rUser!lastname = Request.Post["lastname"] 
         Endif
       Endif
-      ' If Field = "team" Then
-      '    USER_CONFIG["team"] = Request.Post["team"]
-      ' Endif
       If Field = "email" And Not Request["email"] = "" Or IsSpace(Request["email"]) Then
          If MFunctions.CheckEMail(Request.Post["email"]) = True Then
            rUser!email = Request.Post["email"]
          Endif
       Endif
     Next
+
+    If Request.Method = "POST" Then
+      Select Case Request.Post["gravatar"]
+        Case "true"
+           rUser!avatar = MFunctions.GravatarAV(rUser!email)
+        Case "false"
+          If Exist(Application.Path &/ "/.avatars" &/ rUser!username &/ "avatar.png") Then
+            rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
+          Else
+            rUser!avatar = ""
+          Endif
+      End Select
+    Endif
+
+    If Request.Method = "POST" Then
     Try rUser.Update
      If Error Then
       $Error = "Something went wrong, contact to site administrator"
      Endif
-  Endif
+    Endif
+    Endif
   ''newpassword confirmnewpassword 
   If rUser.Available Then
     If Request.Post.Exist("newpassword") = True And Request.Post.Exist("confirmnewpassword") = True Then

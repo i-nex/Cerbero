@@ -6,8 +6,6 @@ Public Sub _new()
   Dim sKey As String
   Dim rUser As Result
   
-  MDatabase.OpenDatabase()
-  
   sLogin = Request["login"]
   sKey = Request["key"]
   If Not sLogin Then Goto FINAL

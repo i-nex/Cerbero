@@ -3,15 +3,29 @@
 Public Settings As New Settings(Application.Path & "/Cerbero.settings")
 Private $Connection As New Connection
 Public Sub Main()
-  
+  Dim sEnv As String
   $Connection = Connections["Cerbero"]
+  $Connection.Host = Settings["mysql/host"]
   $Connection.Password = Settings["mysql/password"]
   $Connection.Open
   DB.Current = $Connection
   
+  ' Response.ContentType = "text/plain;charset=utf-8"
+  '       Response.begin
+  '       Print Application.Path &/ ".public" & Request.Path
+  '       Print Request.Path
+  '       Print Application.Path
+  '       Print Application.Root
+  '       Print Application.Root
+  '       
+  '       For Each sEnv In Application.Env
+  '         Print sEnv & Application.Env[sEnv]
+  '       Next
+  '       Print File.Load(Application.Path &/ ".public" & Request.Path)
+  ' Response.End    
   CSS.Main()
-  WHead.Head()
   MPages.Main()
+
 End
 
 Public Function USER_AVATAR_PATH() As String

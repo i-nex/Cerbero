@@ -1,6 +1,6 @@
 ' Gambas class file
 
 Public HEAD_COL As Collection
-Public Sub Head()
+Public Sub _new()
   HEAD_COL = JSON.Decode(File.Load(Application.Path & "/Head/config.json"))
 End

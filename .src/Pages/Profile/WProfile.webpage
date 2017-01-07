@@ -121,14 +121,14 @@
               <div class="col-md-8">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                    Use uploaded Avatar
+                    <input type="radio" name="gravatar" id="gravatar" value="true" <%If rUser!avatar Begins "https" Then Print "checked=\"\""%>>
+                      Use gravatar
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    Use gravatar
+                    <input type="radio" name="gravatar" id="gravatar" value="false" <%If rUser!avatar Begins "/.avatar" Then Print "checked=\"\""%>>
+                      Don't use gravatar
                   </label>
                 </div>
               </div>

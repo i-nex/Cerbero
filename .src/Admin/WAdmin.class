@@ -1,2 +1,12 @@
 ' Gambas class file
 
+Public Sub _new()
+    Dim Field As String
+    Print Request.UserAgent
+    Print Request.Delimiter
+    Print Request.Language
+    Print Request.Method
+    For Each Field In Request.Fields
+      Print Request.Post[Field]
+    Next
+End

@@ -1,30 +1,74 @@
 ' Gambas module file
 
+Public $hComp As Compress
 Public Sub Main()
-    Dim Path As String
+    Dim $Path As String
+    Dim dDate As Date
+    Dim sFile As String
      ' Handle resource files: images, style sheet...
-    Path = Request.Path
+    $Path = Request.Path
     
-    If Path Like "/Carousel/images/*" Then
-      If Exist(Application.Path &/ Path) Then
-        Response.SendFile(Application.Path &/ Path, GetContentTypeFrom(Path))
+    If $Path Like "/Carousel/images/*" Then
+      If Exist(Application.Path &/ $Path) Then
+        
+        dDate = Stat(Application.Path &/ $Path).LastModified
+        'Response.Buffered = True
+        'Response.Begin
+        Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+        Response.AddHeader("Cache-Control", "private")
+        Response.AddHeader("Cache-Control", "max-age=604800")
+        Response.AddHeader("Cerbero-version", Application.Version)
+        Response.AddHeader("X-Powered-By", "Cerbero")
+        Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+        Response.ContentType = GetContentTypeFrom($Path)
+        Response.Begin
+        Print File.Load(Application.Path & Request.Path)
+        'Response.SendFile(Application.Path &/ Path)
+        Response.End
+         'Return
       Endif
     Endif
     
-    If Not Path = "/" Then
-        If Path And If Exist(".public" &/ Path) Then
-          Response.SendFile(".public" &/ Path, GetContentTypeFrom(Path))
-        Return
-      Endif
+    If Not $Path = "/" Then
+          If Exist(Application.Path &/ ".public" & $Path) = True Then
+          dDate = Stat(Application.Path &/ ".public" & $Path).LastModified
+          'Response.Begin
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          ' Response.AddHeader("Content-Encoding", "gzip")
+          ' Response.AddHeader("Vary", "Accept-Encoding")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          'Response.SendFile(".public" &/ Path)
+          Response.Begin
+          Print File.Load(Application.Path &/ ".public" & $Path)
+          Response.End
+          ' sFile = Temp()
+          ' $hComp = New Compress
+          ' $hComp.Type = "zlib"
+          ' $hComp.File(Application.Path &/ ".public" & Path, Application.Path &/ ".public" & Path & ".gz", $hComp.Max)
+          ' Print File.Load(Application.Path &/ Path & ".gz")
+          ' Response.End
+        'Return
+    Endif
     Endif
     
     
     
-    
-    If Path Like "/.avatars/*" Then
-        If Path And If Exist(Application.Path & Path) Then
-          Response.SendFile(Application.Path & Path, GetContentTypeFrom(Path))
-        Return
+    If $Path Like "/.avatars/*" Then
+        If $Path And If Exist(Application.Path & $Path) Then
+          dDate = Stat(Application.Path &/ $Path).LastModified
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          'Response.SendFile(Application.Path & Path)
+          Response.Begin
+          Print File.Load(Application.Path &/ ".avatars/" & $Path)
+          Response.End
+        'Return
       Endif
     Endif
 End
@@ -72,6 +116,8 @@ Private Sub GetContentTypeFrom(sPath As String) As String
       Return "application/ogg"
     Case "jar"
       Return "application/x-jar"
+    Case "js"
+      Return "text/javascript"
     'Case "xml", "kml"
     '  Return "text/plain"
     Case Else 

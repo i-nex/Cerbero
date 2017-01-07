@@ -68,7 +68,7 @@ Public Sub Register()
      .Body = "Hi,\n\n"
     "You have requested a Cerbero account.\n"
     "Please click on the following link to confirm your registration:\n\n"
-    "http://" & Application.Host &/ Application.Root &/ "confirm?key=" & URL.Encode(uniqueid) & "&login=" & URL.Encode(username) & "\n\n"
+    "http://" & Application.Root &/ Application.Root &/ "confirm?key=" & URL.Encode(uniqueid) & "&login=" & URL.Encode(username) & "\n\n"
      .To.Add(email)
      .From = "eloaders@i-nex.pl"
      .Subject = "Cerbero registration request"
