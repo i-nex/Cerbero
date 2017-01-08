@@ -1,0 +1,48 @@
+' Gambas module file
+
+Property Read Section As Integer
+Property Read Path As String
+Public Enum PATH_404, PATH_MAIN, PATH_ADMIN, PATH_LOGOUT, PATH_PROFILE, PATH_LOGIN, PATH_LOGIND, PATH_CONFIRM, PATH_REGISTER, PATH_REGISTERD, PATH_PUBLIC
+
+
+Private Function Section_Read() As Integer
+  
+  Select Case Request.Path
+      
+    Case Like "/admin"
+      Return PATH_ADMIN
+    Case Like "/logout"
+      Return PATH_LOGOUT
+    Case Like "/profile"
+      Return PATH_PROFILE
+    Case Like "/login"
+      Return PATH_LOGIN
+    Case Like "/logind"
+      Return PATH_LOGIND
+    Case Like "/confirm"
+      Return PATH_CONFIRM
+    Case Like "/register"
+      Return PATH_REGISTER
+    Case Like "/registerd"
+      Return PATH_REGISTERD
+    Case Like "/public*"
+      Return PATH_PUBLIC
+    Case Like "/Carousel*"
+      Return PATH_PUBLIC
+    Case Like "/.avatars*"
+      Return PATH_PUBLIC
+    Case "/"
+      Return PATH_MAIN
+    ' Case Else
+    '   Return PATH_404
+  End Select
+  
+End
+
+Private Function Path_Read() As String
+
+  'Return Application.Protocol & "://" & Application.Host &/ Application.Root &/ Request.Path
+  '
+  Return Application.Protocol & "://" & Application.Host & IIf(Application.Port <> 80, ":" & Application.Port, "") &/ Request.Path
+
+End

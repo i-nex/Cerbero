@@ -59,7 +59,7 @@ Dim Config_For_This_Dropdown As Integer
 						      </li>
 						<%Else If NAVBAR_COL["MENU"][i]["LINKS"][i2]["Class"] = "user" Then%>
 						<<WUserNavbar>>
-					       <%Endif%>
+					  <%Endif%>
 					       
 					  <%Next%>
 					 </ul>
@@ -68,5 +68,4 @@ Dim Config_For_This_Dropdown As Integer
 				
 			</nav>
 		</div>
-</div>
-<%Try NAVBAR_COL.Clear%>
+</div

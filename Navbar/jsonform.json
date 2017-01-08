@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "title": "Version",
+      "description": "Page number to be queried, `1-based`. See [Pagination](https://en.wikipedia.org/wiki/Pagination) for more details",
+      "default": "3.3.6",
+      "required": true
+    },
+    "MENU": {
+      "type": "array",
+      "title": "Menu navbar",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "description": "Query item",
+        "type": "object",
+        "properties": {
+          "Position": {
+            "type": "string",
+            "title": "Position",
+            "description": "Position, can be: nav navbar-nav navbar-right",
+            "required": true
+          },
+          "LINKS": {
+            "type": "array",
+            "title": "all links",
+            "items": {
+                "description": "Links",
+                "type": "object",
+                "properties": {
+                    "Class": {
+                        "type": "string",
+                        "title": "Page size",
+                        "description": "Number of records per page",
+                        "required": true,
+                        "default": "dropdown",
+                        "enum": [
+                                "active",
+                                "Null",
+                                "user",
+                                "dropdown"
+                        ]
+                    },
+                    "Icon": {
+                        "type": "string",
+                        "title": "Icon for this link",
+                        "description": "Icon for this link",
+                        "required": false
+                    },
+                    "href": {
+                        "type": "string",
+                        "title": "Link to page",
+                        "description": "Link to page",
+                        "required": false
+                    },
+                    "text": {
+                        "type": "string",
+                        "title": "Text for this link",
+                        "description": "Text for this link",
+                        "required": false
+                    }
+                }
+            }
+          },
+          "matchAllNull": {
+            "type": "boolean",
+            "title": "Match nulls"
+          },
+          "matchAllNotNull": {
+            "type": "boolean",
+            "title": "Match not nulls"
+          },
+          "facetValues": {
+            "type": "array",
+            "title": "Field values",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "title": "Value"
+                }
+              }
+            }
+          },
+          "included": {
+            "type": "boolean",
+            "title": "Included"
+          }
+        }
+      }
+    }
+  }
+} 

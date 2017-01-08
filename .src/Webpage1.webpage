@@ -1,7 +1,7 @@
 <html>
 <body>
-<h1><%= MFunctions.Randomkey %></h1>
-<h1><%= er %></h1>
-<%Print URL.SetQuery("http://localhost:10000/register", "g", "44")%>
+<%
+Print "<h1>Gambas</h1>";
+%>
 </body>
 </html>

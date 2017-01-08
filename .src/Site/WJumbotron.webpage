@@ -1,3 +1,4 @@
+<div class="container">
 <div class="jumbotron">
       <center>
       <h2>Hello, world!</h2>
@@ -9,4 +10,5 @@
                     <button type="reset" class="btn btn-default">Reset</button>
               </form>
       </center>
+</div>
 </div>

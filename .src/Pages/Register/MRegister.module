@@ -48,7 +48,7 @@ Public Sub Register()
       Return
   Endif
   If Not firstname Then firstname = username
-  MDatabase.OpenDatabase()
+
    rUser = DB.Create("users")
    rUser!username = username
    rUser!password = Base64$(Digest["sha256"](password))

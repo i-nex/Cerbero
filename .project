@@ -3,7 +3,7 @@
 Title=Cerbero
 Startup=Core
 UseHttpServer=1
-Version=0.0.70
+Version=0.0.74
 Component=gb.image
 Component=gb.compress
 Component=gb.compress.bzlib2
@@ -11,6 +11,7 @@ Component=gb.compress.zlib
 Component=gb.crypt
 Component=gb.db
 Component=gb.settings
+Component=gb.httpd
 Component=gb.net
 Component=gb.net.curl
 Component=gb.markdown
@@ -19,11 +20,7 @@ Component=gb.openssl
 Component=gb.pcre
 Component=gb.util.web
 Component=gb.web
-LibraryPath=/home/michal/Pulpit/Cerbero/
-Environment="GB_HTTPD_PORT=10000\nLANG=C\nLC_ALL=C"
+Environment="GB_HTTPD_PORT=9000"
 TabSize=2
-Translate=1
-Language=en_US
-ControlPublic=1
-ModulePublic=1
+Language=pl
 Packager=1

@@ -7,7 +7,6 @@ Public rUser As Result
 Public Sub _new()
   Dim Field As String
 
-  MDatabase.OpenDatabase()
   rUser = DB.Edit("users", "username = &1", username)
 
   If rUser.Available Then

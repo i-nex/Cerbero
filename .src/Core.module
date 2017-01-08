@@ -3,67 +3,90 @@
 Public Settings As New Settings(Application.Path & "/Cerbero.settings")
 Private $Connection As New Connection
 Public Sub Main()
-  Dim sEnv As String
+  Dim DPath As String
+  Dim dDate As Date
+
   $Connection = Connections["Cerbero"]
   $Connection.Host = Settings["mysql/host"]
   $Connection.Password = Settings["mysql/password"]
   $Connection.Open
   DB.Current = $Connection
   
-  ' Response.ContentType = "text/plain;charset=utf-8"
-  '       Response.begin
-  '       Print Application.Path &/ ".public" & Request.Path
-  '       Print Request.Path
-  '       Print Application.Path
-  '       Print Application.Root
-  '       Print Application.Root
-  '       
-  '       For Each sEnv In Application.Env
-  '         Print sEnv & Application.Env[sEnv]
-  '       Next
-  '       Print File.Load(Application.Path &/ ".public" & Request.Path)
-  ' Response.End    
-  CSS.Main()
-  MPages.Main()
+  'CSS.Main()
+  Select Case MPath.Section
+    Case MPath.PATH_ADMIN
+      If Session["role"] = "admin" Then
+        Response.ContentType = "text/html;charset=utf-8"
+        Response.Begin
+        WAdmin.Render
+        Response.End  
+      Else
+        Response.Redirect(Application.Root)
+      Endif
+    Case MPath.PATH_LOGOUT
+      If Session.Id Then
+        Session.Abandon
+      Endif
+      Response.AddHeader("Content-Type", "text/html; charset=UTF-8")
+      Response.Redirect(Application.Root)
+    Case MPath.PATH_PROFILE
+      If Session.Id Then
+        Response.ContentType = "text/html;charset=utf-8"
+        Response.Begin
+        WProfile.Render
+        Response.End  
+      Else
+        Response.Redirect(Application.Root)
+      Endif
+    Case MPath.PATH_LOGIN
+      If Session.Id Then
+        Session.Abandon
+      Endif
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin()
+      WLogin.Render
+      Response.End()
+    Case MPath.PATH_LOGIND
+      MLogin.Login()
+    Case MPath.PATH_CONFIRM
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin
+      WConfirm.Render
+      Response.End
+    Case MPath.PATH_REGISTER
+      If Session.Id Then
+        Session.Abandon
+      Endif
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.Begin
+      WRegister.Render
+      Response.End
+    Case MPath.PATH_REGISTERD
+      MRegister.Register()
+    Case MPath.PATH_PUBLIC
+      MPublic.INIT
+    Case MPath.PATH_MAIN
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.begin
+      WIndex.Render
+      Response.End
+  End Select
 
 End
 
 Public Function USER_AVATAR_PATH() As String
+
   Dim USER_PROFILE_DATA As Collection
   Dim USERNAME As String
+
   If Session.Id Then
-     USERNAME = Session["username"] 
-     USER_PROFILE_DATA = JSON.Decode(File.Load(Application.Path & "/Users/" & USERNAME & "/config.json"))
-     If USER_PROFILE_DATA["avatar"] = "True" Then
-       Return "/.avatars/" & USER_PROFILE_DATA["username"] & "/avatar.png"
-     Else
-       Return ""
-     Endif
+    USERNAME = Session["username"] 
+    USER_PROFILE_DATA = JSON.Decode(File.Load(Application.Path & "/Users/" & USERNAME & "/config.json"))
+    If USER_PROFILE_DATA["avatar"] = "True" Then
+      Return "/.avatars/" & USER_PROFILE_DATA["username"] & "/avatar.png"
+    Else
+      Return ""
+    Endif
   Endif
-End
 
-Public Sub DBC()
-   Dim rSoftware As Result
-   Dim rValidate As Result
-   Dim uniqueid As String
-   uniqueid = MFunctions.getrandom()
-  MDatabase.OpenDatabase()
-
-  rValidate = DB.Create("cpuid")
-  rValidate!brand_str = "Intel(R) Atom(TM) CPU N270   @ 1.60GHz"
-  rValidate!vendor_str = "GenuineIntel"
-  rValidate!family = "6"
-  rValidate!stepping = "2"
-  rValidate!uniqueid = uniqueid
-  rValidate.Update
-  DB.Commit
-  
-  rSoftware = DB.Find("cpuid", "uniqueid LIKE &2", 0, "%" & uniqueid & "%")
-  
-  Response.Begin
-  For Each rSoftware
-    Print rSoftware!brand_str & "\n"
-  Next
-  Response.End
-    
 End

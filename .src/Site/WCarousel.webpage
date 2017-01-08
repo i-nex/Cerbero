@@ -1,6 +1,7 @@
 <%
 Dim i As Integer = 1
 %>
+<div class="container">
 <div class="<%= CAROUSEL_COL["CLASS"]%>" id="<%= CAROUSEL_COL["ID"]%>">
 	<ol class="carousel-indicators">
 		<%For i = 0 To CAROUSEL_COL["CAROUSEL"].Count - 1%>
@@ -29,4 +30,5 @@ Dim i As Integer = 1
       </div> 
       <a class="<%= CAROUSEL_COL["LEFT"]["CLASS"]%>" href="<%= CAROUSEL_COL["LEFT"]["HREF"]%>" data-slide="<%= CAROUSEL_COL["LEFT"]["DATA_SLIDE"]%>"><span class="<%= CAROUSEL_COL["LEFT"]["ICON"]%>"></span></a> 
       <a class="<%= CAROUSEL_COL["RIGHT"]["CLASS"]%>" href="<%= CAROUSEL_COL["RIGHT"]["HREF"]%>" data-slide="<%= CAROUSEL_COL["RIGHT"]["DATA_SLIDE"]%>"><span class="<%= CAROUSEL_COL["RIGHT"]["ICON"]%>"></span></a>
+</div>
 </div>

@@ -2,7 +2,7 @@ Core
 Cerbero
 0
 0
-0.0.70
+0.0.74
 
 gb.image
 gb.compress
@@ -11,6 +11,7 @@ gb.compress.zlib
 gb.crypt
 gb.db
 gb.settings
+gb.httpd
 gb.net
 gb.net.curl
 gb.markdown

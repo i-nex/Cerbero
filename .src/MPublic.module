@@ -1,0 +1,162 @@
+' Gambas module file
+
+
+Public Sub INIT()
+  Dim $hComp As New Compress
+  Dim $Path As String
+  Dim dDate As Date
+  Dim sFile As String
+  Dim $hFile As File
+  $Path = Request.Path
+  sFile = Temp$()
+  If $Path Like "/public*" Then
+    If Not IsDir(Application.Path &/ $Path) Then
+      If Exist(Application.Path &/ $Path) = True Then
+        If Split(CGI["HTTP_ACCEPT_ENCODING"], ",").Exist("gzip*", gb.Like) Then
+          $hComp.Type = "zlib"
+          $hComp.File(Application.Path & $Path, sFile & ".gz", $hComp.Max)
+          If Exist(sFile & ".gz") Then sFile &= ".gz"
+          dDate = Stat(sFile).LastModified
+          Response.AddHeader("Content-Encoding", "gzip")
+          Response.AddHeader("Vary", "Accept-Encoding")
+          $hFile = Open sFile For Read
+          Response.AddHeader("Content-Length", Lof($hFile))
+          Close #$hFile
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          Response.Begin
+          Print File.Load(sFile)
+          Response.End
+        Else
+          dDate = Stat(Application.Path &/ $Path).LastModified
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          Response.Begin
+          Print File.Load(Application.Path &/ $Path)
+          Response.End
+        Endif
+        Return
+      Endif
+    Else
+      Response.Status = "404"
+      Response.ContentType = "text/plain"
+      Response.Begin
+      Print "404 Not found"
+      Response.End
+    Endif
+  Endif
+  
+  If $Path Like "/Carousel*" Then
+    If Not IsDir(Application.Path &/ $Path) Then
+      If Exist(Application.Path &/ $Path) = True Then
+        If Split(CGI["HTTP_ACCEPT_ENCODING"], ",").Exist("gzip*", gb.Like) Then
+          $hComp.Type = "zlib"
+          $hComp.File(Application.Path & $Path, sFile & ".gz", $hComp.Max)
+          If Exist(sFile & ".gz") Then sFile &= ".gz"
+          dDate = Stat(sFile).LastModified
+          Response.AddHeader("Content-Encoding", "gzip")
+          Response.AddHeader("Vary", "Accept-Encoding")
+          $hFile = Open sFile For Read
+          Response.AddHeader("Content-Length", Lof($hFile))
+          Close #$hFile
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          Response.Begin
+          Print File.Load(sFile)
+          Response.End
+        Else
+          dDate = Stat(Application.Path &/ $Path).LastModified
+          Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+          Response.AddHeader("Cache-Control", "public")
+          Response.AddHeader("Cache-Control", "max-age=604800")
+          Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+          Response.ContentType = GetContentTypeFrom($Path)
+          Response.Begin
+          Print File.Load(Application.Path &/ $Path)
+          Response.End
+          Return
+        Endif
+      Endif
+    Else
+      Response.Status = "404"
+      Response.ContentType = "text/plain"
+      Response.Begin
+      Print "404 Not found"
+      Response.End
+    Endif
+  Endif
+  
+  If $Path Like "/.avatars*" Then
+    If Not IsDir(Application.Path &/ $Path) Then
+      If Exist(Application.Path &/ $Path) = True Then
+        dDate = Stat(Application.Path &/ $Path).LastModified
+        Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+        Response.AddHeader("Cache-Control", "public")
+        Response.AddHeader("Cache-Control", "max-age=604800")
+        Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+        Response.ContentType = GetContentTypeFrom($Path)
+        Response.Begin
+        Print File.Load(Application.Path &/ $Path)
+        Response.End
+        Return
+      Endif
+    Else
+      Response.Status = "404"
+      Response.ContentType = "text/plain"
+      Response.Begin
+      Print "404 Not found"
+      Response.End
+    Endif
+  Endif
+End
+
+Private Sub GetContentTypeFrom(sPath As String) As String
+  ' ./glyphicons-halflings-regular.eot:   application/vnd.ms-fontobject; charset=binary
+  ' ./glyphicons-halflings-regular.svg:   image/svg+xml; charset=us-ascii
+  ' ./glyphicons-halflings-regular.ttf:   application/x-font-ttf; charset=binary
+  ' ./glyphicons-halflings-regular.woff:  application/octet-stream; charset=binary
+  ' ./glyphicons-halflings-regular.woff2: application/octet-stream; charset=binary
+  ' 
+  
+  Select Case Lower(File.Ext(sPath))
+    Case "css"
+      Return "text/css"
+    Case "jpg", "jpeg", "jpe", "thumb"
+      Return "image/jpeg"
+    Case "png"
+      Return "image/png"
+    Case "gif"
+      Return "image/gif"
+    Case "zip"
+      Return "application/zip"
+    Case "html", "htm"
+      Return "text/html"
+    Case "txt"
+      Return "text/plain"
+    Case "js"
+      Return "text/javascript"
+    Case "svg"
+      Return "image/svg+xml"
+    Case "ttf"
+      Return "application/x-font-ttf"
+    Case "woff", "woff2"
+      Return "application/font-woff"
+    Case "eot"
+      Return "application/vnd.ms-fontobject"
+      
+    'Case "xml", "kml"
+    '  Return "text/plain"
+    Case Else 
+      Return "application/octet-stream"
+  End Select
+  
+End

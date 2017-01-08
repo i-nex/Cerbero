@@ -1,2 +1,6 @@
 ' Gambas class file
 
+Public FOOTER_COL As Collection
+Public Sub _new()
+  FOOTER_COL = JSON.Decode(File.Load(Application.Path & "/Footer/config.json"))
+End

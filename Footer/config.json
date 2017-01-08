@@ -1,0 +1,104 @@
+{
+  "version": "3.3.6",
+  "FOOTER": [
+    {
+      "h3": "Sponsors",
+      "LINKS": [
+            {
+            "href": "ossplanet.net",
+            "text": "OssPlanet"
+            }
+      ]
+    },
+    {
+      "h3": "They help us",
+      "LINKS": [
+            {
+            "href": "lorem",
+            "text": "ipsum"
+            },
+            {
+            "href": "lorem",
+            "text": "ipsum"
+            },
+            {
+            "href": "lorem",
+            "text": "ipsum"
+            },
+            {
+            "href": "lorem",
+            "text": "ipsum"
+            }
+      ]
+    },
+    {
+      "h3": "Cerbero",
+      "LINKS": [
+            {
+            "href": "lorem",
+            "text": "JSON API"
+            },
+            {
+            "href": "lorem",
+            "text": "Supported apps"
+            },
+            {
+            "href": "http://i-nex.linux.pl/",
+            "text": "I-Nex"
+            }
+      ]
+    },
+    {
+      "h3": "We are using",
+      "LINKS": [
+            {
+            "href": "http://getbootstrap.com/",
+            "text": "Bootstrp"
+            },
+            {
+            "href": "https://bootswatch.com/",
+            "text": "Bootswatch"
+            },
+            {
+            "href": "http://fontawesome.io/",
+            "text": "Font Awesome"
+            },
+            {
+            "href": "https://jquery.com/",
+            "text": "JQuery"
+            },
+            {
+            "href": "http://gambas.sourceforge.net/",
+            "text": "Gambas3"
+            }
+      ]
+    }
+  ],
+  "SOCIAL": [
+            {
+            "href": "",
+            "text": "",
+            "icon": "fa fa-facebook"
+            },
+            {
+            "href": "",
+            "text": "",
+            "icon": "fa fa-twitter"
+            },
+            {
+            "href": "",
+            "text": "",
+            "icon": "fa fa-google-plus"
+            },
+            {
+            "href": "",
+            "text": "",
+            "icon": "fa fa-pinterest"
+            },
+            {
+            "href": "",
+            "text": "",
+            "icon": "fa fa-youtube"
+            }
+      ]
+} 

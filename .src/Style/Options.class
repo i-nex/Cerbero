@@ -20,77 +20,85 @@ End
 
 
 Public Sub Add(option_name As String, option_value As String)
-        Dim rOptions As Result
-        
-        rOptions = DB.Create("options")
-        rOptions!option_name = option_name
-        rOptions!option_value = option_value
-        Try rOptions.Update
-        If Error Then Return
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Create("options")
+  rOptions!option_name = option_name
+  rOptions!option_value = option_value
+  Try rOptions.Update
+  If Error Then Return
+
 End
 
 Public Sub Exist(option_name As String) As Boolean
-        Dim rOptions As Result
-        
-        rOptions = DB.Edit("options", "option_name = &1", option_name)
-        If Not rOptions.Available Then
-          Return False
-        Endif
-        Return True
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return False
+  Endif
+  Return True
+
 End
 
 
 Public Sub _get(option_name As String) As String
-        Dim rOptions As Result
-        
-        rOptions = DB.Edit("options", "option_name = &1", option_name)
-        If Not rOptions.Available Then
-          Return
-        Endif
-        Return rOptions!option_value
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return
+  Endif
+  Return rOptions!option_value
+
 End
 
 Public Sub _put(option_value As String, option_name As String)
-        Dim rOptions As Result
-        
-        rOptions = DB.Edit("options", "option_name = &1", option_name)
-        If Not rOptions.Available Then
-          Return
-        Else
-          rOptions!option_value = option_value
-          rOptions.Update
-          Return
-        Endif
-        Return
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return
+  Else
+    rOptions!option_value = option_value
+    rOptions.Update
+    Return
+  Endif
+  Return
+
 End
 
 Public Sub AllOptions()
-         Dim rOptions As Result
-         Dim i As Integer
-         Dim all_options As Integer
-         Dim option_id As New Long[]
-         Dim option_name As New String[]
-         Dim option_value As New String[]
-         Dim c As New Collection
-        Dim s As String = "{ \"MENU\": [ ] }"
-         rOptions = DB.Edit("options")
-         c = JSON.Decode(s)
-         For Each rOptions
-           c["MENU"].Add(rOptions!option_name, rOptions!option_id)
-           option_id.Add(rOptions!option_id)
-           option_name.Add(rOptions!option_name)
-           option_value.Add(rOptions!option_value)
-         Next
-         For all_options = 0 To option_id.Count - 1
-           Print option_id[all_options]
-           Print option_name[all_options] 
-           Print option_value[all_options]
-         Next
 
-         'File.Save(Application.Path &/ "Options.json", JSON.Encode(rrr))
-        
-        
-        
-        
-        Print JSON.Encode(c)
+  Dim rOptions As Result
+  Dim i As Integer
+  Dim all_options As Integer
+  Dim option_id As New Long[]
+  Dim option_name As New String[]
+  Dim option_value As New String[]
+  Dim c As New Collection
+  Dim s As String = "{ \"MENU\": [ ] }"
+
+  rOptions = DB.Edit("options")
+  c = JSON.Decode(s)
+  For Each rOptions
+    c["MENU"].Add(rOptions!option_name, rOptions!option_id)
+    option_id.Add(rOptions!option_id)
+    option_name.Add(rOptions!option_name)
+    option_value.Add(rOptions!option_value)
+  Next
+  For all_options = 0 To option_id.Count - 1
+    Print option_id[all_options]
+    Print option_name[all_options] 
+    Print option_value[all_options]
+  Next
+  
+  'File.Save(Application.Path &/ "Options.json", JSON.Encode(rrr))
+  
+  Print JSON.Encode(c)
+
 End
