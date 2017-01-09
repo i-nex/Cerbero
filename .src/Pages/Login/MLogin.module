@@ -6,26 +6,27 @@ Public Sub Login()
   Dim rUser As Result
    
   If Not USERNAME Then
-    Response.Redirect(Application.Root &/ "login?alert=1")
+    Response.Redirect("/login?alert=1")
     Return
   Endif
   If Not PASSWORD Then
-    Response.Redirect(Application.Root &/ "login?alert=2")
+    Response.Redirect("/login?alert=2")
     Return
   Endif
   
   rUser = DB.Edit("users", "username = &1", USERNAME)
   If Not rUser.Available Then
-    Response.Redirect(Application.Root &/ "login?alert=4")
+    Response.Redirect("/login?alert=4")
     Return
   Endif
   
   If rUser!emailVerified = False Then
-    Response.Redirect(Application.Root &/ "login?alert=4")
+    Response.Redirect("/login?alert=4")
   Endif
   
   If rUser.Available Then
     If rUser!password = Base64$(Digest["sha256"](PASSWORD)) Then
+       Session.CookiePath = "/"
        Session["username"] = rUser!username
        Session["role"] = rUser!role
        Session["firstname"] = rUser!firstname
@@ -35,9 +36,9 @@ Public Sub Login()
        Session["emailVerified"] = rUser!emailVerified
        Session["verificationToken"] = rUser!verificationToken
        Session.Timeout = 86400 + 1000
-       Response.Redirect(Application.Root)
+       Response.Redirect("/")
     Else
-      Response.Redirect(Application.Root &/ "login?alert=4")
+      Response.Redirect("/login?alert=4")
     Endif
   Endif
 End

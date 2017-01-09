@@ -1,12 +1,23 @@
 ' Gambas class file
 
 Public Sub _new()
-    Dim Field As String
-    Print Request.UserAgent
-    Print Request.Delimiter
-    Print Request.Language
-    Print Request.Method
-    For Each Field In Request.Fields
-      Print Request.Post[Field]
+    Dim i As Integer
+    ' Print Request.UserAgent
+    ' Print Request.Delimiter
+    ' Print Request.Language
+    ' Print Request.Method
+    ' For Each Field In Request.Fields
+    '   Print Request.Post[Field]
+    ' Next
+  If Request.Method = "POST" And Request.Exist("update") Then
+    For i = 0 To Request.Fields.Count - 1
+      Options[Request.Fields[i]] = Request.Post[Request.Fields[i]]
     Next
+    Return
+  Endif
+    
+  If Request.Method = "POST" And Request.Exist("add") Then
+    Options.Add(Request.Post["option_name"], Request.Post["option_value"])
+  Endif
+  'Try DB.Delete("user", "login = &1", sLogin)
 End

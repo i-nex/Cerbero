@@ -33,16 +33,16 @@ Private Function Section_Read() As Integer
       Return PATH_PUBLIC
     Case "/"
       Return PATH_MAIN
-    ' Case Else
-    '   Return PATH_404
+    Case Else
+      Return PATH_404
   End Select
   
 End
 
 Private Function Path_Read() As String
 
-  'Return Application.Protocol & "://" & Application.Host &/ Application.Root &/ Request.Path
+  'Return Application.Protocol & "://" & / &/ / &/ Request.Path
   '
-  Return Application.Protocol & "://" & Application.Host & IIf(Application.Port <> 80, ":" & Application.Port, "") &/ Request.Path
+  'Return Application.Protocol & "://" & / & IIf(Application.Port <> 80, ":" & Application.Port, "") &/ Request.Path
 
 End

@@ -3,7 +3,7 @@
 Title=Cerbero
 Startup=Core
 UseHttpServer=1
-Version=0.0.74
+Version=0.0.84
 Component=gb.image
 Component=gb.compress
 Component=gb.compress.bzlib2
@@ -11,7 +11,6 @@ Component=gb.compress.zlib
 Component=gb.crypt
 Component=gb.db
 Component=gb.settings
-Component=gb.httpd
 Component=gb.net
 Component=gb.net.curl
 Component=gb.markdown
@@ -20,7 +19,6 @@ Component=gb.openssl
 Component=gb.pcre
 Component=gb.util.web
 Component=gb.web
-Environment="GB_HTTPD_PORT=9000"
 TabSize=2
 Language=pl
 Packager=1

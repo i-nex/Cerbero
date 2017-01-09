@@ -15,11 +15,11 @@ Public Sub _new()
         If Exist(Application.Path & "/.avatars/" & Session["username"]) = True Then
           ''Avatar Height and Width mus be in maximum 192px
           If ImageStat(Request.Files["uploadavatar"]).Width <= 200 And ImageStat(Request.Files["uploadavatar"]).Height <= 200 Then
-           
-          ''Remove existing avatar
-          Try Kill Application.Path &/ ".avatars/" & Session["username"] & "/avatar.png"
-          Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
-          rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
+            
+            ''Remove existing avatar
+            Try Kill Application.Path &/ ".avatars/" & Session["username"] & "/avatar.png"
+            Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
+            rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
             Try rUser.Update
             If Error Then
               $Error = "Cannot change avatar"
@@ -27,9 +27,9 @@ Public Sub _new()
           Endif
         Else
           If ImageStat(Request.Files["uploadavatar"]).Width <= 200 And ImageStat(Request.Files["uploadavatar"]).Height <= 200 Then
-          Try Mkdir Application.Path & "/.avatars/" & Session["username"]
-          Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
-          rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
+            Try Mkdir Application.Path & "/.avatars/" & Session["username"]
+            Try Copy Request.Files["uploadavatar"] To "" & Application.Path & "/.avatars/" & Session["username"] & "/avatar.png" & ""
+            rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
             Try rUser.Update
             If Error Then
               $Error = "Cannot change avatar"
@@ -62,7 +62,7 @@ Public Sub _new()
     If Request.Method = "POST" Then
       Select Case Request.Post["gravatar"]
         Case "true"
-           rUser!avatar = MFunctions.GravatarAV(rUser!email)
+          rUser!avatar = MFunctions.GravatarAV(rUser!email)
         Case "false"
           If Exist(Application.Path &/ "/.avatars" &/ rUser!username &/ "avatar.png") Then
             rUser!avatar = "/.avatars" &/ rUser!username &/ "avatar.png"
@@ -73,12 +73,12 @@ Public Sub _new()
     Endif
 
     If Request.Method = "POST" Then
-    Try rUser.Update
-     If Error Then
-      $Error = "Something went wrong, contact to site administrator"
-     Endif
+      Try rUser.Update
+      If Error Then
+        $Error = "Something went wrong, contact to site administrator"
+      Endif
     Endif
-    Endif
+  Endif
   ''newpassword confirmnewpassword 
   If rUser.Available Then
     If Request.Post.Exist("newpassword") = True And Request.Post.Exist("confirmnewpassword") = True Then

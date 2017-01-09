@@ -24,27 +24,27 @@ Public Sub Register()
   Endif
   
   If IsSpace(email) Then
-      Response.Redirect(Application.Root &/ "register?alert=1")
+      Response.Redirect("/register?alert=1")
       Return
   Endif
   If Not username Then
-      Response.Redirect(Application.Root &/ "register?alert=2")
+      Response.Redirect("/register?alert=2")
       Return
   Endif
   If Not password Then
-      Response.Redirect(Application.Root &/ "register?alert=3")
+      Response.Redirect("/register?alert=3")
       Return
   Endif
   If Not confirm Then
-      Response.Redirect(Application.Root &/ "register?alert=4")
+      Response.Redirect("/register?alert=4")
       Return
   Endif
   If Not confirm = password Then
-      Response.Redirect(Application.Root &/ "register?alert=5")
+      Response.Redirect("/register?alert=5")
       Return
   Endif
   If Not MFunctions.CheckEMail(email) Then
-      Response.Redirect(Application.Root &/ "register?alert=6")
+      Response.Redirect("/register?alert=6")
       Return
   Endif
   If Not firstname Then firstname = username
@@ -59,7 +59,7 @@ Public Sub Register()
    Try rUser.Update
      If Error Then
       Response.Begin
-      Response.Redirect(Application.Root &/ "register?alert=7")
+      Response.Redirect("/register?alert=7")
       Response.End
      Endif
   
@@ -82,11 +82,11 @@ Public Sub Register()
    Try confirmemail.Send
    If Error Then
     Try DB.Delete("users", "username = &1", username)
-    Response.Redirect(Application.Root &/ "register?alert=8")
+    Response.Redirect("/register?alert=8")
     Return
    Endif
 
   Response.Begin
-  Response.Redirect(Application.Root &/ "register?alert=9")
+  Response.Redirect("/register?alert=9")
   Response.End
 End

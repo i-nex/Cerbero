@@ -17,7 +17,7 @@ Dim i2 As Integer
                 </div>
                 <%Next%>
                 <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Lorem Ipsum </h3>
+                    <!--<h3> Lorem Ipsum </h3>
                     <ul>
                         <li>
                             <div class="input-append newsletter-box text-center">
@@ -25,7 +25,7 @@ Dim i2 As Integer
                                 <button class="btn  bg-gray" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
                             </div>
                         </li>
-                    </ul>
+                    </ul>-->
                     <ul class="social">
                         <%For i = 0 To FOOTER_COL["SOCIAL"].Count - 1%>
                         <li> <a href="<%= FOOTER_COL["SOCIAL"][i]["href"]%>"> <i class="<%= FOOTER_COL["SOCIAL"][i]["icon"]%>"></i></a></li>
@@ -41,7 +41,7 @@ Dim i2 As Integer
     
     <div class="footer-bottom">
         <div class="container">
-            <p class="pull-left"> GNU GPL v3 Cerbero 2017 | Core version: <%=Application.Version%></p>
+            <p class="pull-left"> <%Print Options["footer_copy"]%> | Core version: <%=Application.Version%></p>
         </div>
     </div>
 </div>

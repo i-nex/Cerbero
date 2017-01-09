@@ -6,11 +6,11 @@ Public Sub Main()
   Dim DPath As String
   Dim dDate As Date
 
-  $Connection = Connections["Cerbero"]
-  $Connection.Host = Settings["mysql/host"]
-  $Connection.Password = Settings["mysql/password"]
-  $Connection.Open
-  DB.Current = $Connection
+  Session.CookiePath = "/"
+
+  'Session.Load()
+
+  OpenDatabase()
   
   'CSS.Main()
   Select Case MPath.Section
@@ -21,14 +21,14 @@ Public Sub Main()
         WAdmin.Render
         Response.End  
       Else
-        Response.Redirect(Application.Root)
+        Response.Redirect("/")
       Endif
     Case MPath.PATH_LOGOUT
       If Session.Id Then
         Session.Abandon
       Endif
       Response.AddHeader("Content-Type", "text/html; charset=UTF-8")
-      Response.Redirect(Application.Root)
+      Response.Redirect("/")
     Case MPath.PATH_PROFILE
       If Session.Id Then
         Response.ContentType = "text/html;charset=utf-8"
@@ -36,7 +36,7 @@ Public Sub Main()
         WProfile.Render
         Response.End  
       Else
-        Response.Redirect(Application.Root)
+        Response.Redirect("/")
       Endif
     Case MPath.PATH_LOGIN
       If Session.Id Then
@@ -65,12 +65,26 @@ Public Sub Main()
       MRegister.Register()
     Case MPath.PATH_PUBLIC
       MPublic.INIT
-    Case MPath.PATH_MAIN
+    Case MPath.PATH_MAIN, MPath.PATH_404
       Response.ContentType = "text/html;charset=utf-8"
       Response.begin
       WIndex.Render
       Response.End
   End Select
+  'Session.Save()
+
+Catch
+  
+  Response.ContentType = "text/html;charset=UTF-8"
+  
+  Print "<html><body><h2>Unexpected error while displaying this page.</h2>"
+  Print "<pre>"; Error.Text, Error.Code
+  Print "<b>"; Error.Where; "</b>"
+  Print "<p>"; Error.Backtrace.Join("<br />"); "</p>"
+  
+  Debug()
+  
+  Print "</pre></body>"
 
 End
 
@@ -89,4 +103,47 @@ Public Function USER_AVATAR_PATH() As String
     Endif
   Endif
 
+End
+
+Private Sub Debug()
+
+  Print "<br />"
+  Print "<br />"
+  Print "Application.Host: " & Application.Host & "<br />"
+  Print "Application.Request: " & Application.Request & "<br />"
+  Print "Request.Path: " & Request.Path & "<br />"
+  'Print "Path.Page: " & Path.Page & "<br />"
+  'Print "Language: " & Me.Language & "<br /><br />"
+
+  ' Print "Users.Current.Username: " & User.Current.Username & "<br />"
+  ' Print "Users.Current.IsAdmin: " & Users.Current.IsAdmin & "<br />"
+  ' Print "Users.Current.Type: " & Users.Current.Type & "<br /><br />"
+
+  Print "Session.Username: " & Session["username"] & "<br />"
+  Print "Session.id: " & Session.Id & "<br /><br />"
+
+  ' Print "Actions.Parsed: " & Actions.Parsed & "<br />"
+  ' Print "Actions.Show: " & Actions.Show & "<br />"
+  ' Print "Actions.View: " & Actions.View & "<br />"
+  ' Print "Actions.Edit: " & Actions.Edit & "<br />"
+  ' Print "Actions.Help: " & Actions.Help & "<br />"
+  ' Print "Actions.OnlineHelp: " & Actions.OnlineHelp & "<br />"
+  ' Print "Actions.Image: " & Actions.Image & "<br />"
+  ' Print "Path.Section: " & Path.Section & "<br /><br />"
+  ' 
+  ' Print "Wget: " & Main.IsWget & "<br />"
+
+End
+
+Public Sub OpenDatabase()
+  
+  $Connection = Connections["Cerbero"]
+  $Connection.Host = Settings["mysql/host"]
+  $Connection.Password = Settings["mysql/password"]
+  Try $Connection.Open
+  If Error Then
+    CGI.Error(Error.Text)
+  Endif
+  DB.Current = $Connection
+  
 End
