@@ -7,7 +7,7 @@
 <%Endif%>
 <<WHeader>>
 <<WNavbar>>
-
+<div class="container">
 <div class="row">
    <div class="col-lg-12">
    <ul class="nav nav-pills" role="tablist">
@@ -15,9 +15,30 @@
             <a href="#options" aria-controls="options" role="tab" data-toggle="tab">
             <%=("Options")%><i class="fa fa-cogs fa-lg pull-left"></i></a>
           </li>
-          <li role="presentation"><a href="#changepassword" aria-controls="changepassword" role="tab" data-toggle="tab">API Settings<i class="fa fa-low-vision fa-lg pull-left"></i></a></li>
-          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Users<i class="fa fa-envelope fa-lg pull-left"></i></a></li>
-          <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Stats<i class="fa fa-cogs fa-lg pull-left"></i></a></li>
+          <li role="presentation">
+            <a href="#apisettings" aria-controls="apisettings" role="tab" data-toggle="tab">
+            <%=("API Settings")%><i class="fa fa-low-vision fa-lg pull-left"></i></a>
+          </li>
+          <li role="presentation">
+            <a href="#users" aria-controls="users" role="tab" data-toggle="tab">
+            <%=("Users")%><i class="fa fa-envelope fa-lg pull-left"></i></a>
+          </li>
+          <li role="presentation">
+            <a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">
+            <%=("Stats")%><i class="fa fa-cogs fa-lg pull-left"></i></a>
+          </li>
+          <li role="presentation">
+            <a href="#navbar" aria-controls="navbar" role="tab" data-toggle="tab">
+            <%=("Navbar")%><i class="fa fa-cogs fa-lg pull-left"></i></a>
+          </li>
+          <li role="presentation">
+            <a href="#head" aria-controls="head" role="tab" data-toggle="tab">
+            <%=("Head")%><i class="fa fa-cogs fa-lg pull-left"></i></a>
+          </li>
+          <li role="presentation">
+            <a href="#carousel" aria-controls="carousel" role="tab" data-toggle="tab">
+            <%=("Carousel")%><i class="fa fa-cogs fa-lg pull-left"></i></a>
+          </li>
         </ul>
   </div>
   <div class="tab-content" style="padding-top: 60px;">
@@ -28,16 +49,25 @@
       <div class="col-lg-4">
         <</WAdminOptions>>
       </div>
+      <div class="col-lg-4">
+        <<WAdminOptionsDelete>>
+      </div>
     </div>
-    <div role="tabpanel" class="tab-pane fade in active" id="changepassword">
+    <div role="tabpanel" class="tab-pane fade in active" id="apisettings">
     </div>
-    <div role="tabpanel" class="tab-pane fade in active" id="messages">
+    <div role="tabpanel" class="tab-pane fade in active" id="users">
     </div>
-    <div role="tabpanel" class="tab-pane fade in active" id="settings">
+    <div role="tabpanel" class="tab-pane fade in active" id="stats">
+    </div>
+    <div role="tabpanel" class="tab-pane fade in active" id="navbar">
+    </div>
+    <div role="tabpanel" class="tab-pane fade in active" id="head">
+    </div>
+    <div role="tabpanel" class="tab-pane fade in active" id="carousel">
     </div>
   </div>
 </div>
-
+</div>
 <<WFooter>>
 </body>
 </html>

@@ -1,0 +1,275 @@
+' Gambas class file
+
+Export
+Create Static
+
+
+''*************************************************************************
+''@MEMBERTYPE:Class
+''@CLASSNAME:./.src/Style/Options.class
+''@VERSION:XX.XX.XX[A|B]
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''*************************************************************************
+
+
+
+
+
+''@MEMBERTYPE:Property ReadOnly
+''@DECL:Property Read WEBSITE_ROOT As String
+''@NAME:WEBSITE_ROOT
+''@ACCESS:Public
+''@VARTYPE:
+''@DATATYPE:String
+''@DEFVAL:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Property Read WEBSITE_ROOT As String
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Private Sub WEBSITE_ROOT_Read() As String
+''@NAME:WEBSITE_ROOT_Read
+''@ACCESS:Private
+''@METHODTYPE:
+''@RETURNTYPE:String
+''@PARAM:No Parameters.
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Private Sub WEBSITE_ROOT_Read() As String
+  
+  Return Settings["website/root"]
+  
+End
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub Delete(option_name As String)
+''@NAME:Delete
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:No return value.
+''@PARAM:option_name As String
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub Delete(option_name As String)
+        Dim rOptions As Result
+        
+        rOptions = DB.Edit("options", "option_name = &1", option_name)
+        Try rOptions.Delete
+        If Error Then Return
+End
+
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub Add(option_name As String, option_value As String)
+''@NAME:Add
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:No return value.
+''@PARAM:option_name As String
+''@PARAM:option_value As String
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub Add(option_name As String, option_value As String)
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Create("options")
+  rOptions!option_name = option_name
+  rOptions!option_value = option_value
+  Try rOptions.Update
+  If Error Then Return
+
+End
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub Exist(option_name As String) As Boolean
+''@NAME:Exist
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:Boolean
+''@PARAM:option_name As String
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub Exist(option_name As String) As Boolean
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return False
+  Endif
+  Return True
+
+End
+
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub _get(option_name As String) As String
+''@NAME:_get
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:String
+''@PARAM:option_name As String
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub _get(option_name As String) As String
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return
+  Endif
+  Return rOptions!option_value
+
+End
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub _put(option_value As String, option_name As String)
+''@NAME:_put
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:No return value.
+''@PARAM:option_value As String
+''@PARAM:option_name As String
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub _put(option_value As String, option_name As String)
+
+  Dim rOptions As Result
+  
+  rOptions = DB.Edit("options", "option_name = &1", option_name)
+  If Not rOptions.Available Then
+    Return
+  Else
+    rOptions!option_value = option_value
+    rOptions.Update
+    Return
+  Endif
+  Return
+
+End
+
+
+
+''@MEMBERTYPE:Method
+''@DECL:Public Sub AllOptions()
+''@NAME:AllOptions
+''@ACCESS:Public
+''@METHODTYPE:
+''@RETURNTYPE:No return value.
+''@PARAM:No Parameters.
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@EXPLANATION:
+''@CODECOMMENT:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+''@EXAMPLE:
+Public Sub AllOptions()
+
+  Dim rOptions As Result
+  Dim i As Integer
+  Dim all_options As Integer
+  Dim option_id As New Long[]
+  Dim option_name As New String[]
+  Dim option_value As New String[]
+  Dim c As New Collection
+  Dim s As String = "{ \"MENU\": [ ] }"
+
+  rOptions = DB.Edit("options")
+  c = JSON.Decode(s)
+  For Each rOptions
+    c["MENU"].Add(rOptions!option_name, rOptions!option_id)
+    option_id.Add(rOptions!option_id)
+    option_name.Add(rOptions!option_name)
+    option_value.Add(rOptions!option_value)
+  Next
+  For all_options = 0 To option_id.Count - 1
+    Print option_id[all_options]
+    Print option_name[all_options] 
+    Print option_value[all_options]
+  Next
+  
+  'File.Save(Application.Path &/ "Options.json", JSON.Encode(rrr))
+  
+  Print JSON.Encode(c)
+
+End
+
+
+
+''******************************************************''Code documented by: gambasCodeDocumentor V. 1.0.1.
+''https://github.com/jalonsor/gambascodedocumentor
+''******************************************************
+

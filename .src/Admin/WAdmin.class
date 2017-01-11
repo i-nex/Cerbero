@@ -2,6 +2,7 @@
 
 Public Sub _new()
     Dim i As Integer
+    Dim Element As String
     ' Print Request.UserAgent
     ' Print Request.Delimiter
     ' Print Request.Language
@@ -18,6 +19,14 @@ Public Sub _new()
     
   If Request.Method = "POST" And Request.Exist("add") Then
     Options.Add(Request.Post["option_name"], Request.Post["option_value"])
+  Endif
+  
+  If Request.Method = "POST" And Request.Exist("delete") Then
+    For Each Element In Request.Post.Fields
+      If Request[Element] = "on" Then
+        Options.Delete(Element)
+      Endif
+    Next
   Endif
   'Try DB.Delete("user", "login = &1", sLogin)
 End

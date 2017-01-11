@@ -1,0 +1,25 @@
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-cogs fa-lg"></i>  <%=("Delete Options")%></h3>
+      </div>
+    <div class="panel-body">
+      <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="/admin?delete" novalidate="novalidate">
+        <fieldset>
+          <%For Each rOptions%>
+          <div class="form-group">
+            <label for="<%= rOptions!option_name%>" class="col-lg-2 control-label"><%= rOptions!option_name%></label>
+            <div class="col-lg-10">
+              <input type="checkbox" class="form-control" id="<%= rOptions!option_name%>" name="<%= rOptions!option_name%>">
+            </div>
+          </div>
+          <%Next%>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="reset" class="btn btn-default"><%=("Cancel")%></button>
+              <button type="submit" class="btn btn-primary"><%=("Delete options")%></button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    </div>

@@ -26,6 +26,7 @@ Public Sub Login()
   
   If rUser.Available Then
     If rUser!password = Base64$(Digest["sha256"](PASSWORD)) Then
+       rUser!lastlogin = Now
        Session.CookiePath = "/"
        Session["username"] = rUser!username
        Session["role"] = rUser!role
@@ -35,7 +36,7 @@ Public Sub Login()
        Session["avatar"] = rUser!avatar
        Session["emailVerified"] = rUser!emailVerified
        Session["verificationToken"] = rUser!verificationToken
-       Session.Timeout = 86400 + 1000
+       Try rUser.Update
        Response.Redirect("/")
     Else
       Response.Redirect("/login?alert=4")

@@ -1,0 +1,7 @@
+' Gambas class file
+
+Public Element As String
+Public rOptions As Result
+Public Sub _new()
+    rOptions = DB.Edit("options")
+End

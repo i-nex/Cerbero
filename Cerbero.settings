@@ -1,0 +1,5 @@
+[mysql]
+password="cerbero"
+User="admin_cerbero"
+Database="admin_cerbero"
+host="i-nex.pl"
