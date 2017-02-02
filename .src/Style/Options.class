@@ -52,7 +52,7 @@ Public Sub _get(option_name As String) As String
   If Not rOptions.Available Then
     Return
   Endif
-  Return rOptions!option_value
+  Return Replace(rOptions!option_value, "\n", "")
 
 End
 

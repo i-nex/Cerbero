@@ -1,0 +1,17 @@
+<<WDoctype>>
+
+<<WHead>>
+<body>
+<%If Session["role"] = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
+<<WHeader>>
+<<WNavbar>>
+<%If Request.Get.Exist("post") Then%>
+<<WBlogPost>>
+<%Else%>
+<<WBlog>>
+<%Endif%>
+<<WFooter>>
+</body>
+</html>

@@ -4,11 +4,15 @@ Public $Error As String
 Public username As String = Session["username"]
 Public uniqueid As String
 Public rUser As Result
+Public rApi_Keys As Result
+
+Public API_KEY_PRIVATE As String
+Public API_KEY_PUBLIC As String
 Public Sub _new()
   Dim Field As String
 
   rUser = DB.Edit("users", "username = &1", username)
-
+  
   If rUser.Available Then
     If Request.Exist("uploadavatar") = True Then
       If MFunctions.IsMimeType(Request.Files["uploadavatar"], "image/png") = True Then
@@ -94,5 +98,41 @@ Public Sub _new()
         Endif
       Endif
     Endif
+  Endif
+  
+  
+  
+  If Request.Get["chgapi"] = "pri" Then
+    rApi_Keys = DB.Edit("api_key", "username = &1", username)
+    If rApi_Keys.Available Then
+      rApi_Keys!api_key_private = MFunctions.Randomkey
+      rApi_Keys.Update
+    Else
+      rApi_Keys = DB.Create("api_key")
+      rApi_Keys!username = username
+      rApi_Keys!api_key_private = MFunctions.Randomkey
+      rApi_Keys.Update
+    Endif
+  Endif
+      
+  If Request.Get["chgapi"] = "pub" Then
+    rApi_Keys = DB.Edit("api_key", "username = &1", username)
+    If rApi_Keys.Available Then
+      rApi_Keys!api_key_public = MFunctions.Randomkey
+      rApi_Keys.Update
+    Else
+      rApi_Keys = DB.Create("api_key")
+      rApi_Keys!username = username
+      rApi_Keys!api_key_public = MFunctions.Randomkey
+      rApi_Keys.Update
+    Endif
+  Endif
+  rApi_Keys = DB.Edit("api_key", "username = &1", username)
+  If rApi_Keys.Available Then
+    API_KEY_PRIVATE = rApi_Keys!api_key_private
+    API_KEY_PUBLIC = rApi_Keys!api_key_public
+  Else
+    API_KEY_PRIVATE = "Click this button to generate key -->"
+    API_KEY_PUBLIC = "Click this button to generate key -->"
   Endif
 End

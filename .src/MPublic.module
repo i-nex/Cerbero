@@ -95,6 +95,52 @@ Public Sub INIT()
     Endif
   Endif
   
+  If $Path Like "/Uploads*" Then
+    If Not IsDir(Application.Path &/ $Path) Then
+      If Exist(Application.Path &/ $Path) = True Then
+        dDate = Stat(Application.Path &/ $Path).LastModified
+        Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+        Response.AddHeader("Cache-Control", "public")
+        Response.AddHeader("Cache-Control", "max-age=604800")
+        Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+        Response.ContentType = GetContentTypeFrom($Path)
+        Response.Begin
+        Print File.Load(Application.Path &/ $Path)
+        Response.End
+        Return
+      Endif
+    Else
+      Response.Status = "404"
+      Response.ContentType = "text/plain"
+      Response.Begin
+      Print "404 Not found"
+      Response.End
+    Endif
+  Endif
+  
+  If $Path Like "/Logos*" Then
+    If Not IsDir(Application.Path &/ $Path) Then
+      If Exist(Application.Path &/ $Path) = True Then
+        dDate = Stat(Application.Path &/ $Path).LastModified
+        Response.AddHeader("Expires", CGI.FormatDate(DateAdd(Now, gb.Month, 1)))
+        Response.AddHeader("Cache-Control", "public")
+        Response.AddHeader("Cache-Control", "max-age=604800")
+        Response.AddHeader("Last-Modified", CGI.FormatDate(dDate))
+        Response.ContentType = GetContentTypeFrom($Path)
+        Response.Begin
+        Print File.Load(Application.Path &/ $Path)
+        Response.End
+        Return
+      Endif
+    Else
+      Response.Status = "404"
+      Response.ContentType = "text/plain"
+      Response.Begin
+      Print "404 Not found"
+      Response.End
+    Endif
+  Endif
+  
   If $Path Like "/.avatars*" Then
     If Not IsDir(Application.Path &/ $Path) Then
       If Exist(Application.Path &/ $Path) = True Then

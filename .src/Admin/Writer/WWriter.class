@@ -1,0 +1,61 @@
+' Gambas class file
+
+Public rPosts As Result
+Public Sub _new()
+  Dim POSTDATE As String
+  'Print Request.Post["post_date"] & " " & Request.Post["post_time"]
+  If Request.Method = "POST" Then
+    If IsInteger(Request.Post["post_id"]) Then
+      rPosts = DB.Edit("posts", " id = &1", Request.Post["post_id"])
+      If MFunctions.IsMimeType(Request.Files["post_image"], "image/png") = True Then
+        If Request.Post.Exist("post_image") = True Then
+          Try Copy Request.Post.Files["post_image"] To "" & Application.Path & "/Uploads/Images/" & Request.Post["post_image"] & "" & ""
+          rPosts!post_image = "/Uploads/Images/" & Request.Post["post_image"]
+        Endif
+      Endif
+      rPosts!post_title = Request.Post["post_title"]
+      rPosts!post_content = Request.Post["post_content"]
+      rPosts!post_tags = Request.Post["post_tags"]
+      rPosts!post_name = Request.Post["post_name"]
+      rPosts!post_author = Request.Post["post_author"]
+      Print Now
+      POSTDATE = URL.UnQuote(Replace(Request.Post["post_date"], "\n", ""))
+      'Print CFloat(Val(Request.Post["post_date"]))
+      'Print URL.UnQuote(Request.Post["post_date"])
+      'Print CDate(CInteger(Replace(Request.Post["post_date"], ".", "") & Replace(Request.Post["post_time"], ":", "")))
+      rPosts!post_date = POSTDATE
+      rPosts!post_type = Request.Post["post_type"]
+      rPosts!post_status = Request.Post["post_status"]
+      rPosts.Update
+      
+    Else If Request.Post["post_id"] = "new" Then
+      rPosts = DB.Create("posts")
+      
+      If Request.Post.Exist("post_image") = True Then
+        If MFunctions.IsMimeType(Request.Files["post_image"], "image/png") = True Then
+          Try Copy Request.Post.Files["post_image"] To "" & Application.Path & "/Uploads/Images/" & Request.Post["post_image"] & "" & ""
+          rPosts!post_image = "/Uploads/Images/" & Request.Post["post_image"]
+          rPosts!post_image_alt = Request.Post["post_image"]
+        Endif
+      Endif
+      rPosts!post_title = Request.Post["post_title"]
+      rPosts!post_content = Request.Post["post_content"]
+      rPosts!post_tags = Request.Post["post_tags"]
+      rPosts!post_name = Request.Post["post_name"]
+      rPosts!post_author = Request.Post["post_author"]
+      'rPosts!post_date = Now
+      'rPosts!post_date = Request.Post["post_date"] & " " & Request.Post["post_time"]
+      rPosts!post_type = Request.Post["post_type"]
+      rPosts!post_status = Request.Post["post_status"]
+      rPosts.Update
+    Endif
+  Endif
+  
+  If Request.Method = "GET" Then
+    If Request.Get["action"] = "delete" Then
+      DB.Delete("posts", "ID = &1", Request.Get["id"])
+    Endif
+    
+  Endif
+  
+End

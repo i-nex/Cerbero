@@ -24,6 +24,9 @@
                                         <p class="text-left">
                                             <a href="/admin" class="btn btn-danger btn-block btn-sm">Admin Panel</a>
                                         </p>
+                                        <p class="text-left">
+                                            <a href="/admin/posts" class="btn btn-danger btn-block btn-sm">Posts</a>
+                                        </p>
                                         <%Endif%>
                                     </div>
                                 </div>

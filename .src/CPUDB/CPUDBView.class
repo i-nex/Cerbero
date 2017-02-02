@@ -1,0 +1,8 @@
+' Gambas class file
+
+Public rCPUDB As Result
+Private CPUNAME As String
+Public Sub _new()
+  CPUNAME = URL.Decode(Request.Get["cpuname"])
+  rCPUDB = DB.Edit("jqi5", "PROCESSOR_MODEL_NAME LIKE &1", "%" & CPUNAME & "%")
+End

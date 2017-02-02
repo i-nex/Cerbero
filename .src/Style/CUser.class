@@ -1,0 +1,38 @@
+' Gambas class file
+
+Export
+Create Static
+Property Read IsAdmin As Boolean
+Property Read UserLoggedIn As Boolean
+Private rUser As Result
+Private USERNAME As String = Session["username"]
+Public Sub init()
+  rUser = DB.Edit("users", "username = &1", USERNAME)
+
+End
+
+Private Function IsAdmin_Read() As Boolean
+  If Me.UserLoggedIn Then
+    init
+    If rUser!role = "admin" Then
+      Return True
+    Else 
+      Return False
+    Endif
+  Else
+    Return False
+  Endif
+  Return 
+End
+
+Private Function UserLoggedIn_Read() As Boolean
+  
+  rUser = DB.Find("users", "username = &1", USERNAME)
+  If rUser.Available Then
+    Return True
+  Else
+    Return False
+  Endif
+  
+
+End

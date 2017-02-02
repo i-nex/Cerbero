@@ -1,0 +1,8 @@
+' Gambas class file
+
+Public rPosts As Result
+Public Sub _new()
+  Dim POST_ID As String = Request["id"]
+  rPosts = DB.Edit("posts", "ID = &1", POST_ID)
+  
+End

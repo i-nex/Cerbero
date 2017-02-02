@@ -1,0 +1,19 @@
+<<WDoctype>>
+
+<<WHead>>
+<body>
+<%If Session["role"] = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
+<<WHeader>>
+<<WNavbar>>
+<%If Request["action"] = "show" Then%>
+<<CPUDBView>>
+<%Else If Request["action"] = "edit" Then%>
+<<CPUDBEdit>>
+<%Else%>
+<<CPUDBList>>
+<%Endif%>
+<<WFooter>>
+</body>
+</html>

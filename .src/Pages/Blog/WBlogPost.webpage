@@ -1,0 +1,39 @@
+<%
+Dim Sb As String
+Dim I As Integer
+%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel <%= CPostsType[rPost!post_type]%>">
+			        <div class="thumbnail">
+			         <img alt="<%= rPost!post_image_alt%>" border="0" src="<%= rPost!post_image%>" title="<%= rPost!post_image_alt%>"  class="img-responsive center-block">
+			        </div>
+                <div class="panel-body">
+                    <div class="post">
+                        <h2><a href="/news?post=<%Print rPost!ID%>"><%= rPost!post_title%></a></h2>
+                        <div class="post-header well well-sm">
+                            <span class="post-author vcard"><%=("Posted by ")%><a href="/?viewprofile=<%Print MFunctions.GetUsernameById(rPost!post_author)%>"><%Print MFunctions.GetUsernameById(rPost!post_author)%></a></span>
+                            <span class="post-timestamp"><%=("at ")%><a class="timestamp-link" href="#" rel="bookmark" title="permanent link">
+                            <span class="glyphicon glyphicon-time"></span>
+                            <abbr class="published" title="<%Print Format(rPost!post_date, "yyyymmdd")%>"> <%Print Format(rPost!post_date, "hhnnss")%></abbr></a>
+                            </span>
+                            <span class="post-labels">Labels: 
+                            <%For Each Sb In Split(rPost!post_tags)%>
+                              <a class="label label-default" href="#" rel="tag"><%Print Sb%></a>,
+                            <%Next%>
+                            </span>
+                        </div>
+                        <div>
+                        <%Print rPost!post_content%>
+                        </div>
+                        <hr>
+                        <%If rPost!comment_status = "open" Then%>
+                        <<WDisqus>>
+                        <%Endif%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -63,6 +63,25 @@ Public Sub Main()
       Response.End
     Case MPath.PATH_REGISTERD
       MRegister.Register()
+    Case MPath.PATH_NEWS
+      Response.ContentType = "text/html;charset=utf-8"
+      Response.begin
+      WBlogIndex.Render
+      Response.End
+    Case MPath.PATH_POSTS
+      If Session["role"] = "admin" Then
+        Response.ContentType = "text/html;charset=utf-8"
+        Response.begin
+        WWriter.Render
+        Response.End
+      Else
+        Response.Redirect("/")
+      Endif
+    Case MPath.PATH_CPUDB
+        Response.ContentType = "text/html;charset=utf-8"
+        Response.begin
+        CPUDBindex.Render
+        Response.End
     Case MPath.PATH_PUBLIC
       MPublic.INIT
     Case MPath.PATH_MAIN, MPath.PATH_404

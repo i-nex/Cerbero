@@ -1,0 +1,9 @@
+' Gambas class file
+
+Public rCPUDB As Result
+
+Public Sub _new()
+  rCPUDB = DB.Edit("jqi5")
+  
+
+End

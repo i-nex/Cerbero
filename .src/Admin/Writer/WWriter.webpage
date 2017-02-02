@@ -1,0 +1,19 @@
+<<WDoctype>>
+
+<<WHead>>
+<body>
+<%If Session["role"] = "admin" Then%>
+<<WAdmTinyNavbar>>
+<%Endif%>
+<<WHeader>>
+<<WNavbar>>
+<%If Request["action"] = "add" Then%>
+<<WWriterNewPost>>
+<%Else If Request["action"] = "edit"%>
+<<WWriterEditPost>>
+<%Else%>
+<<WWriterListPost>>
+<%Endif%>
+<<WFooter>>
+</body>
+</html>

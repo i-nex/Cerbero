@@ -7,14 +7,14 @@
             {
             "Class": "active",
             "Icon": "fa fa-th-list",
-            "href": "profile",
-            "text": "Profile"
+            "href": "/news",
+            "text": "News"
             },
             {
             "Class": "Null",
             "Icon": "",
-            "href": "#",
-            "text": "2 lnk"
+            "href": "/cpudb",
+            "text": "CPUDB"
             }
       ]
     },

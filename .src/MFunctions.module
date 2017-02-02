@@ -72,3 +72,12 @@ Public Function DisqusAV(username As String)
   
   
 End
+
+Public Function GetUsernameById(ID As String) As String
+  Dim rUser As Result
+  rUser = DB.Edit("users", "id = &1", ID)
+  If rUser.Available Then
+    Return rUser!username
+  Endif
+  Return "unknown"
+End

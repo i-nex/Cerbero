@@ -1,0 +1,23 @@
+' Gambas class file
+
+Export
+Create Static
+
+Public Sub _get(post_type As String) As String
+
+  Select Case post_type
+    Case "primary"
+      Return "panel-primary"
+    Case "success"
+      Return "panel-success"
+    Case "warning"
+      Return "panel-warning"
+    Case "danger"
+      Return "panel-danger"
+    Case "info"
+      Return "panel-info"
+    Case Else
+      Return "panel-default"
+  End Select
+
+End

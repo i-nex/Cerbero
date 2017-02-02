@@ -1,0 +1,50 @@
+<%
+Dim Sb As String
+Dim I As Integer
+%>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <%For Each rPosts%>
+            <div class="panel <%= CPostsType[rPosts!post_type]%>">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a href="/news?post=<%Print rPosts!ID%>"><%= rPosts!post_title%></a>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="post">
+                  <div class="post-header well well-sm">
+                    <span class="post-author vcard"><%=("Posted by ")%><a href="/?viewprofile=<%Print MFunctions.GetUsernameById(rPosts!post_author)%>"><%Print MFunctions.GetUsernameById(rPosts!post_author)%></a></span>
+                    <span class="post-timestamp"><%=("at ")%><a class="timestamp-link" href="#" rel="bookmark" title="permanent link">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <span>
+                      <abbr class="published" title="<%Print Left$(CString(rPosts!post_date), 10)%>"> <%Print Right$(CString(rPosts!post_date), 8)%></abbr></a>
+                    </span>
+                    <span class="post-labels"><%=("Labels: ")%>
+                            <%For Each Sb In Split(rPosts!post_tags)%>
+                              <a class="label label-default" href="#" rel="tag"><%Print Sb%></a>,
+                            <%Next%>
+                    </span>
+                    <span class="post-comment-link pull-right"><a class="comment-link" href="/news?post=<%Print rPosts!ID%>#disqus_thread" onclick=""><script id="dsq-count-scr" src="//cerbero.disqus.com/count.js" async></script></a></span>
+                  </div>
+                  <div>
+                    <span class="thumbnail" style="float:left; margin-right: 10px;"><img alt="<%= rPosts!post_image_alt%>" border="0" src="<%= rPosts!post_image%>" title="<%= rPosts!post_image_alt%>"  class="img-responsive" width="300px" height="200px"></span>
+                      <%Print rPosts!post_content%>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer clearfix">
+	             <a href="/news?post=<%Print rPosts!ID%>" class="btn btn-primary btn-sm pull-right" role="button"><%=("Read More ")%><span class="glyphicon glyphicon-chevron-right"></span></a>
+              </div>
+            </div>
+            <%Next%>
+            <div class="col-md-12">
+              <ul class="pager">
+                <li class="<%= PrevCLASS%>"><a href="<%= PrevHREF%>">&larr; <%=("Newer")%></a></li>
+                <li class="<%= NextCLASS%>"><a href="<%= NextHREF%>"><%=("Older")%> &rarr;</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>

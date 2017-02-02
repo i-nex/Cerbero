@@ -2,7 +2,7 @@
 
 Property Read Section As Integer
 Property Read Path As String
-Public Enum PATH_404, PATH_MAIN, PATH_ADMIN, PATH_LOGOUT, PATH_PROFILE, PATH_LOGIN, PATH_LOGIND, PATH_CONFIRM, PATH_REGISTER, PATH_REGISTERD, PATH_PUBLIC
+Public Enum PATH_404, PATH_MAIN, PATH_ADMIN, PATH_LOGOUT, PATH_PROFILE, PATH_LOGIN, PATH_LOGIND, PATH_CONFIRM, PATH_REGISTER, PATH_REGISTERD, PATH_NEWS, PATH_POSTS, PATH_CPUDB, PATH_PUBLIC
 
 
 Private Function Section_Read() As Integer
@@ -29,8 +29,18 @@ Private Function Section_Read() As Integer
       Return PATH_PUBLIC
     Case Like "/Carousel*"
       Return PATH_PUBLIC
+    Case Like "/Uploads*"
+      Return PATH_PUBLIC
+    Case Like "/Logos*"
+      Return PATH_PUBLIC
     Case Like "/.avatars*"
       Return PATH_PUBLIC
+    Case Like "/news"
+      Return PATH_NEWS
+    Case Like "/cpudb"
+      Return PATH_CPUDB
+    Case Like "/admin/posts"
+      Return PATH_POSTS
     Case "/"
       Return PATH_MAIN
     Case Else

@@ -2,7 +2,7 @@ Core
 Cerbero
 0
 0
-0.0.84
+0.0.101
 
 gb.image
 gb.compress
@@ -19,4 +19,8 @@ gb.openssl
 gb.pcre
 gb.util.web
 gb.web
+gb.xml
+gb.xml.html
+gb.xml.rpc
+gb.xml.xslt
 

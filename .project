@@ -1,9 +1,9 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.9.2
+# Compiled with Gambas 3.9.1
 Title=Cerbero
 Startup=Core
 UseHttpServer=1
-Version=0.0.84
+Version=0.0.101
 Component=gb.image
 Component=gb.compress
 Component=gb.compress.bzlib2
@@ -19,6 +19,10 @@ Component=gb.openssl
 Component=gb.pcre
 Component=gb.util.web
 Component=gb.web
+Component=gb.xml
+Component=gb.xml.html
+Component=gb.xml.rpc
+Component=gb.xml.xslt
 TabSize=2
 Language=pl
 Packager=1

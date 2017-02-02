@@ -1,0 +1,31 @@
+' Gambas class file
+
+Export
+Create Static
+Private SearchCPU As String = Temp()
+
+Public Function CallToPassMark(CPUNAME As String) As String
+  Dim SHTML As New HtmlDocument
+  Dim httpc As New HttpClient
+  Dim i As Integer
+  httpc.Timeout = 60
+  httpc.UpdateCookies = True
+  httpc.Async = False
+  httpc.URL = "http://www.passmark.com/search/zoomsearch.php"
+
+  httpc.Post("application/x-www-form-urlencoded", Subst("zoom_query=&1", CPUNAME),, SearchCPU)
+  'Return httpc.Peek()
+  'If InStr(httpc.Peek(), "true") Then Return True
+  SHTML.Open(SearchCPU)
+  'If SHTML.GetElementsByClassName("result_title").Exist Then
+    For i = 0 To SHTML.GetElementsByClassName("result_title").Count - 1
+      'If SHTML.GetElementsByClassName("result_title")[i].GetChildrenByTagName("a").Exist Then
+        'If SHTML.GetElementsByClassName("result_title")[i].GetChildrenByTagName("a")[0].GetAttribute("href") Like "*cpu.php?cpu=*" Then
+          Return SHTML.GetElementsByClassName("result_title")[i].GetChildrenByTagName("a")[0].GetAttribute("href")
+        'Endif
+      'Endif
+    Next
+  'Else
+    'Return "Not found"
+  'Endif
+End

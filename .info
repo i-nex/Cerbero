@@ -1,3 +1,32 @@
+#CPassMark
+
+CA
+CallToPassMark
+m
+s
+(CPUNAME)s
+#CPostsType
+
+CA
+_get
+m
+s
+(post_type)s
+#CUser
+
+CA
+IsAdmin
+r
+b
+
+UserLoggedIn
+r
+b
+
+init
+m
+
+
 #MFunctions
 
 C
@@ -21,6 +50,10 @@ DisqusAV
 M
 
 (username)s
+GetUsernameById
+M
+s
+(ID)s
 #Options
 
 CA

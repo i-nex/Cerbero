@@ -1,0 +1,10 @@
+' Gambas class file
+
+Public ID As String = Request.Get["post"]
+Public rPost As Result
+Public Sub _new()
+  
+  If IsNull(Request.Get["post"]) = False Then
+  rPost = DB.Edit("posts", "ID = &1", ID)
+  Endif
+End

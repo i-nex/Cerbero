@@ -1,0 +1,11 @@
+' Gambas class file
+
+Public rPosts As Result
+Public Sub _new()
+  
+  If Request["query"] Then
+    rPosts = DB.Edit("posts", "post_title LIKE &1", "%" & Request["query"] & "%")
+  Else
+    rPosts = DB.Edit("posts")
+  Endif
+End

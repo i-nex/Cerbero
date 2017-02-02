@@ -1,0 +1,78 @@
+' Gambas class file
+
+Public PrevCLASS As String
+Public PrevHREF As String
+Public NextCLASS As String
+Public NextHREF As String
+Public rPosts As Result
+Public CURPAGE As Integer = 0
+Public Page As Integer
+
+Public PostContentSmall As String
+Public Sub _new()
+  If Not Request.Get.Exist("page") Then 
+    Page = 0 
+  Else 
+    Page = CInteger(Request.Get["page"])
+  Endif
+  
+  Try CURPAGE = CInteger(Request.Get["page"])
+  If CheckExistNextPosts() = True Then
+     NextCLASS = "next"
+     NextHREF = "/news?page=" & (Page + 1)
+  Else
+     NextCLASS = "next disabled"
+     NextHREF = ""
+  Endif
+
+  If CURPAGE > 0 Then
+     PrevCLASS = "previous"
+     PrevHREF = "/news?page=" & (CInteger(Request.Get["page"]) - 1)
+  Else If CURPAGE = 0 Then
+     PrevCLASS = "previous disabled"
+     PrevHREF = ""
+  Endif
+  
+  If Request.Get.Exist("page") Then
+    BlogPostsPerPage()
+  Else
+    BlogPostsInCur()
+  Endif
+  ' PostContentSmall = Null
+  ' For Each sLine In Split(rPosts!post_content, "\n")
+  '   If sLine Like "*===more===*" Then
+  '     Return
+  '   Endif
+  '   PostContentSmall &= sLine
+  ' Next
+End
+
+Private Function BlogPostsPerPage()
+  
+  ''The SQL query below says "return only 3 records, start on record 4 (OFFSET 3)":
+    'Strona 1 = 1 ilość 3 Start 0-3
+    'Strona 2 = 2 ilość 3 Start 3-6
+    'Strona 3 = 3 ilość 3 Start 6-9
+    'Jeśli strona = 0 wtedy OFFSET = 0 0*0=0
+    'Jeśli strona = 1 wtedy OFFSET = 3 1*3=1
+    'Jeśli strona = 2 wtedy OFFSET = 6 2*3=6
+    'Jeśli strona = 3 wtedy OFFSET = 7 3*3=9
+  rPosts = DB.Edit("posts", "post_status = 'publish' ORDER BY post_date DESC LIMIT 3 OFFSET &1", CURPAGE * 3)
+  
+End
+
+Private Function BlogPostsInCur()
+  
+  rPosts = DB.Edit("posts", "post_status = 'publish' ORDER BY post_date DESC LIMIT 3 OFFSET 0")
+  
+End
+
+Private Function CheckExistNextPosts() As Boolean
+  Dim rNextPosts As Result
+  rNextPosts = DB.Edit("posts", "post_status = 'publish' ORDER BY post_date DESC LIMIT 3 OFFSET &1", (CURPAGE + 1) * 3)
+  If rNextPosts.Count > 0 Then
+    Return True
+  Else 
+    Return False
+  Endif
+End

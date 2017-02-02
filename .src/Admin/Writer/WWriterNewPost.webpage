@@ -1,0 +1,147 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit Post</h3>
+        </div>
+        <form enctype="multipart/form-data" role="form" method="POST" action="/admin/posts" novalidate="novalidate">
+        <input type="hidden" name="post_id" value="new">
+        <div class="panel-body">
+        <!--Begin of post thumb image-->
+        <div class="row">
+          <div class="col-md-12">
+		        <div class="form-group">
+		          <div class="thumbnail img-preview">
+			         <img alt="" border="0" src="" title=""  class="img-preview img-responsive center-block">
+			        </div>
+			        <div class="col-md-4 col-md-offset-4">
+			         <div class="input-group">
+			           <input id="fakeUploadLogo" class="form-control fake-shadow" placeholder="Choose File" disabled="disabled">
+			           <div class="input-group-btn">
+			             <div class="fileUpload btn btn-danger fake-shadow">
+			               <span><i class="glyphicon glyphicon-upload"></i> Upload post image</span>
+			               <input id="logo-id" name="post_image" type="file" class="attachment_upload">
+			             </div>
+			           </div>
+               </div>
+              </div>
+            </div>
+		      </div>
+		    </div>
+        <!--End of post image thumb-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <input class="form-control input-lg" name="post_title" id="focusedInput" type="text">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" id="summernote" name="post_content" placeholder="Content"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select class="form-control" name="category" id="category">
+                <option>Articles</option>
+                <option>Tutorials</option>
+                <option>Freebies</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input class="form-control" name="post_tags" id="tags" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well well-sm">
+              <div class="input-group">
+                <span class="input-group-addon">(Clean URL) Name:/</span>
+                <input class="form-control" name="post_name" placeholder="Clean url" type="text">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">Author:</span>
+                <input class="form-control" name="post_author" type="text">
+              </div>
+            </div>
+          </div>
+        <div class="col-md-6">
+          <div class="well well-sm well-primary">
+            <div class="form-group">
+              <label for="post_date">Date:</label>
+              <input type="text" class="form-control" id="post_date" name="post_date">
+            </div>
+            <div class="form-group">
+              <label for="post_type">Type:</label>
+              <select name="post_type" id="post_type" class="form-control">
+                <option>info</option>
+                <option>success</option>
+                <option>warning</option>
+                <option>primary</option>
+                <option>danger</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="post_status">Status:</label>
+              <select name="post_status" id="post_status" class="form-control">
+                <option>draft</option>
+                <option>publish</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer clearfix">
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-sm pull-right">
+          <span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
+          <button type="button" class="btn btn-default btn-sm pull-right">
+          <span class="glyphicon glyphicon-eye-open"></span>Preview</button>
+        </div>
+      </div>
+     </form>
+    </div>
+   </div>
+ </div>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#summernote').summernote({
+		height: "300px"
+	});
+});
+var postForm = function() {
+	var content = $('textarea[name="post_content"]').html($('#summernote').code());
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var brand = document.getElementById('logo-id');
+    brand.className = 'attachment_upload';
+    brand.onchange = function() {
+        document.getElementById('fakeUploadLogo').value = this.value.substring(12);
+    };
+
+    // Source: http://stackoverflow.com/a/4459419/6396981
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('.img-preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#logo-id").change(function() {
+        readURL(this);
+    });
+});
+</script>

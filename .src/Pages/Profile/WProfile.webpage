@@ -14,7 +14,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
         <img src="<%= rUser!avatar%>" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
+        <h6><%=("Upload a different photo...")%></h6>
         <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="/profile" novalidate="novalidate">
             <input type="file" name="uploadavatar" class="text-center center-block well well-sm">
             <input class="btn btn-primary" value="<%=("Upload")%>" type="submit">
@@ -33,10 +33,10 @@
       <div>
       <!-- Nav tabs -->
         <ul class="nav nav-pills nav-justified" role="tablist">
-          <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile<i class="fa fa-user-circle fa-lg pull-left"></i></a></li>
-          <li role="presentation"><a href="#changepassword" aria-controls="changepassword" role="tab" data-toggle="tab">Change password<i class="fa fa-low-vision fa-lg pull-left"></i></a></li>
-          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages<i class="fa fa-envelope fa-lg pull-left"></i></a></li>
-          <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings<i class="fa fa-cogs fa-lg pull-left"></i></a></li>
+          <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><%=("Profile")%><i class="fa fa-user-circle fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#changepassword" aria-controls="changepassword" role="tab" data-toggle="tab"><%=("Change password")%><i class="fa fa-low-vision fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#api_keys" aria-controls="api_keys" role="tab" data-toggle="tab"><%=("API Keys")%><i class="fa fa-key fa-lg pull-left"></i></a></li>
+          <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><%=("Settings")%><i class="fa fa-cogs fa-lg pull-left"></i></a></li>
         </ul>
 
       <!-- Tab panes -->
@@ -108,9 +108,33 @@
           </form>
           </div>
           <!-- Tab changepassword end-->
-          <!-- Tab messages begin-->
-          <div role="tabpanel" class="tab-pane fade" id="messages">
-          ...
+          <!-- Tab api begin-->
+          <div role="tabpanel" class="tab-pane fade" id="api_keys">
+              <div class="col-lg-10 col-md-offset-1">
+                <div class="form-group has-success">
+                  <label class="control-label"><%=("API KEY Public")%></label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
+                    <input type="text" class="form-control" value="<%= API_KEY_PUBLIC%>" readonly>
+                    <div class="input-group-btn">
+                      <a href="/profile?chgapi=pub" class="btn btn-info" role="button"><i class="fa fa-refresh fa-lg"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group has-error">
+                  <label class="control-label"><%=("API KEY Private")%></label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
+                    <input type="text" class="form-control" value="<%= API_KEY_PRIVATE%>" readonly>
+                    <div class="input-group-btn">
+                      <a href="/profile?chgapi=pri" class="btn btn-danger" role="button"><i class="fa fa-refresh fa-lg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-offset-3 text-center">
+                <strong><%=("Remember! I-Nex use only Private API Key to publish data online")%></strong>
+              </div>
           </div>
           <!-- Tab messages end-->
           <!-- Tab settings begin-->
