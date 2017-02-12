@@ -73,10 +73,15 @@
           </div>
         <div class="col-md-6">
           <div class="well well-sm well-primary">
-            <div class="form-group">
-              <label for="post_date">Date:</label>
-              <input type="text" class="form-control" id="post_date" name="post_date">
-            </div>
+            <label class="control-label col-sm-3" for="registration-date">Date:</label>
+            	 <div class="input-group registration-date-time">
+            	   <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+            		 <input class="form-control" name="post_date" id="registration-date">
+            		 <span class="input-group-btn">
+            	     <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
+                  <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
+                </span>
+            	</div>
             <div class="form-group">
               <label for="post_type">Type:</label>
               <select name="post_type" id="post_type" class="form-control">
@@ -144,4 +149,14 @@ $(document).ready(function() {
         readURL(this);
     });
 });
+
+function addNow() {
+  nowDate = moment().tz("<%= Options["timezone"]%>").format("MM/DD/YYYY HH:mm:ss");
+  document.getElementById('registration-date').value = nowDate;
+  set = setTimeout(function () { addNow(); }, 1000);
+}
+
+function stopNow() {
+  clearTimeout(set);
+}
 </script>

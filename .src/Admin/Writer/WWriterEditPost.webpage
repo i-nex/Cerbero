@@ -42,10 +42,11 @@
               <label class="control-label col-sm-3" for="registration-date">Date:</label>
             	 <div class="input-group registration-date-time">
             	   <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-            		 <input class="form-control" name="post_date" id="registration-date" type="date" value="<%Print Format(rPosts!post_date, "yyyy/mm/dd hh:nn:ss")%>">
+            		 <input class="form-control" name="post_date" id="registration-date" value="<%= rPosts!post_date%>">
             		 <span class="input-group-btn">
             	     <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
                   <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
+                  <button class="btn btn-default" type="button" onclick="resetDate()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Reset</button>
                 </span>
             	</div>
             </div>
@@ -153,12 +154,17 @@ $(document).ready(function() {
 });
 
 function addNow() {
-  nowDate = moment().tz("Europe/London").format("YYYY-MM-DD HH:mm:ss");
+  nowDate = moment().tz("<%= Options["timezone"]%>").format("MM/DD/YYYY HH:mm:ss");
   document.getElementById('registration-date').value = nowDate;
   set = setTimeout(function () { addNow(); }, 1000);
 }
 
 function stopNow() {
   clearTimeout(set);
+}
+
+function resetDate() {
+  clearTimeout(set);
+  document.getElementById('registration-date').value = "<%= rPosts!post_date%>";
 }
 </script>

@@ -2,7 +2,7 @@
 	<div class="row">
 	 <div class="col-lg-12">
 	  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="/cpudb" novalidate="novalidate">
-    <input type="hidden" name="cpudb" value="edit"> 
+    <input type="hidden" name="cpudb" value="add"> 
             <fieldset>
                 <!-- Form Name -->
                 <legend>Form Name</legend>
@@ -10,77 +10,77 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_MODEL_NAME"><%=("Model name:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_MODEL_NAME" name="PROCESSOR_MODEL_NAME" type="text" value="<%= rCPUDB!PROCESSOR_MODEL_NAME%>" class="form-control input-md" required="">
+                        <input id="PROCESSOR_MODEL_NAME" name="PROCESSOR_MODEL_NAME" type="text" class="form-control input-md" required="">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_CODENAME"><%=("Codename:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_CODENAME" name="PROCESSOR_CODENAME" type="text" value="<%= rCPUDB!PROCESSOR_CODENAME%>" class="form-control input-md">
+                        <input id="PROCESSOR_CODENAME" name="PROCESSOR_CODENAME" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_RELEASED"><%=("Released:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_RELEASED" name="PROCESSOR_RELEASED" type="text" value="<%= rCPUDB!PROCESSOR_RELEASED%>" class="form-control input-md">
+                        <input id="PROCESSOR_RELEASED" name="PROCESSOR_RELEASED" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_PRODUCTION_STATUS"><%=("Production Status:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_PRODUCTION_STATUS" name="PROCESSOR_PRODUCTION_STATUS" type="text" value="<%= rCPUDB!PROCESSOR_PRODUCTION_STATUS%>" class="form-control input-md">
+                        <input id="PROCESSOR_PRODUCTION_STATUS" name="PROCESSOR_PRODUCTION_STATUS" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_PART"><%=("Part:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_PART" name="PROCESSOR_PART" type="text" value="<%= rCPUDB!PROCESSOR_PART%>" class="form-control input-md">
+                        <input id="PROCESSOR_PART" name="PROCESSOR_PART" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_MARKET"><%=("Market:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_MARKET" name="PROCESSOR_MARKET" type="text" value="<%= rCPUDB!PROCESSOR_MARKET%>" class="form-control input-md">
+                        <input id="PROCESSOR_MARKET" name="PROCESSOR_MARKET" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_TDP"><%=("TDP:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_TDP" name="PROCESSOR_TDP" type="text" value="<%= rCPUDB!PROCESSOR_TDP%>" class="form-control input-md">
+                        <input id="PROCESSOR_TDP" name="PROCESSOR_TDP" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_VOLTAGE"><%=("Voltage:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_VOLTAGE" name="PROCESSOR_VOLTAGE" type="text" value="<%= rCPUDB!PROCESSOR_VOLTAGE%>" class="form-control input-md">
+                        <input id="PROCESSOR_VOLTAGE" name="PROCESSOR_VOLTAGE" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_MULTIPLIER"><%=("Multiplier:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_MULTIPLIER" name="PROCESSOR_MULTIPLIER" type="text" value="<%= rCPUDB!PROCESSOR_MULTIPLIER%>" class="form-control input-md">
+                        <input id="PROCESSOR_MULTIPLIER" name="PROCESSOR_MULTIPLIER" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_TURBOCLOCK"><%=("Turbo clock:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_TURBOCLOCK" name="PROCESSOR_TURBOCLOCK" type="text" value="<%= rCPUDB!PROCESSOR_TURBOCLOCK%>" class="form-control input-md">
+                        <input id="PROCESSOR_TURBOCLOCK" name="PROCESSOR_TURBOCLOCK" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_MEMORYSUPPORT"><%=("Memory support:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_MEMORYSUPPORT" name="PROCESSOR_MEMORYSUPPORT" type="text" value="<%= rCPUDB!PROCESSOR_MEMORYSUPPORT%>" class="form-control input-md">
+                        <input id="PROCESSOR_MEMORYSUPPORT" name="PROCESSOR_MEMORYSUPPORT" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text PROCESSOR_OFCORES-->
@@ -88,7 +88,6 @@
                     <label class="col-md-4 control-label" for="PROCESSOR_OFCORES"><%=("OF Cores:")%></label>
                     <div class="col-md-4">
                         <select id="PROCESSOR_OFCORES" name="PROCESSOR_OFCORES" class="form-control">
-                              <option value="<%= rCPUDB!PROCESSOR_OFCORES%>" selected><%= rCPUDB!PROCESSOR_OFCORES%></option>
 														<option value="Single-core" >Single-core</option>
 														<option value="Dual-core" >Dual-core</option>
 														<option value="Triple-core" >Triple-core</option>
@@ -107,77 +106,77 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_SMPCPUS"><%=("SMP CPUS:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_SMPCPUS" name="PROCESSOR_SMPCPUS" type="text" value="<%= rCPUDB!PROCESSOR_SMPCPUS%>" class="form-control input-md">
+                        <input id="PROCESSOR_SMPCPUS" name="PROCESSOR_SMPCPUS" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_INTEGRATEDGRAPHIC"><%=("Integrated Graphic:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_INTEGRATEDGRAPHIC" name="PROCESSOR_INTEGRATEDGRAPHIC" type="text" value="<%= rCPUDB!PROCESSOR_INTEGRATEDGRAPHIC%>" class="form-control input-md">
+                        <input id="PROCESSOR_INTEGRATEDGRAPHIC" name="PROCESSOR_INTEGRATEDGRAPHIC" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_CACHEL1"><%=("Cache L1:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_CACHEL1" name="PROCESSOR_CACHEL1" type="text" value="<%= rCPUDB!PROCESSOR_CACHEL1%>" class="form-control input-md">
+                        <input id="PROCESSOR_CACHEL1" name="PROCESSOR_CACHEL1" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_CACHEL2"><%=("Cache L2:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_CACHEL2" name="PROCESSOR_CACHEL2" type="text" value="<%= rCPUDB!PROCESSOR_CACHEL2%>" class="form-control input-md">
+                        <input id="PROCESSOR_CACHEL2" name="PROCESSOR_CACHEL2" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_CACHEL3"><%=("Cache L3:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_CACHEL3" name="PROCESSOR_CACHEL3" type="text" value="<%= rCPUDB!PROCESSOR_CACHEL3%>" class="form-control input-md">
+                        <input id="PROCESSOR_CACHEL3" name="PROCESSOR_CACHEL3" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_CACHEL4"><%=("Cache L4:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_CACHEL3" name="PROCESSOR_CACHEL3" type="text" value="<%= rCPUDB!PROCESSOR_CACHEL3%>" class="form-control input-md">
+                        <input id="PROCESSOR_CACHEL3" name="PROCESSOR_CACHEL3" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_FREQUENCY"><%=("CPU Frequency:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_FREQUENCY" name="PROCESSOR_FREQUENCY" type="text" value="<%= rCPUDB!PROCESSOR_FREQUENCY%>" class="form-control input-md">
+                        <input id="PROCESSOR_FREQUENCY" name="PROCESSOR_FREQUENCY" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_TCASEMAX"><%=("CPU Tcase Max:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_TCASEMAX" name="PROCESSOR_TCASEMAX" type="text" value="<%= rCPUDB!PROCESSOR_TCASEMAX%>" class="form-control input-md">
+                        <input id="PROCESSOR_TCASEMAX" name="PROCESSOR_TCASEMAX" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_PACKAGE"><%=("CPU Package:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_PACKAGE" name="PROCESSOR_PACKAGE" type="text" value="<%= rCPUDB!PROCESSOR_PACKAGE%>" class="form-control input-md">
+                        <input id="PROCESSOR_PACKAGE" name="PROCESSOR_PACKAGE" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_DIE_SIZE"><%=("CPU DIE Size:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_DIE_SIZE" name="PROCESSOR_DIE_SIZE" type="text" value="<%= rCPUDB!PROCESSOR_DIE_SIZE%>" class="form-control input-md">
+                        <input id="PROCESSOR_DIE_SIZE" name="PROCESSOR_DIE_SIZE" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_TRANSISTORS"><%=("CPU Transistors:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_TRANSISTORS" name="PROCESSOR_TRANSISTORS" type="text" value="<%= rCPUDB!PROCESSOR_TRANSISTORS%>" class="form-control input-md">
+                        <input id="PROCESSOR_TRANSISTORS" name="PROCESSOR_TRANSISTORS" type="text" class="form-control input-md">
                     </div>
                 </div>
                 <!--PROCESSOR_PROCESS_SIZE-->
@@ -185,17 +184,16 @@
                     <label class="col-md-4 control-label" for="PROCESSOR_PROCESS_SIZE"><%=("CPU Process size:")%></label>
                     <div class="col-md-4">
                         <select id="PROCESSOR_PROCESS_SIZE" name="PROCESSOR_PROCESS_SIZE" class="form-control">
-                              <option value="<%= rCPUDB!PROCESSOR_PROCESS_SIZE%>" selected><%= rCPUDB!PROCESSOR_PROCESS_SIZE%></option>
-														<option value="14" >14 nm</option>
-														<option value="22" >22 nm</option>
-														<option value="28" >28 nm</option>
-														<option value="32" >32 nm</option>
-														<option value="40" >40 nm</option>
-														<option value="45" >45 nm</option>
-														<option value="65" >65 nm</option>
-														<option value="90" >90 nm</option>
-														<option value="130" >130 nm</option>
-														<option value="180" >180 nm</option>
+														<option value="14nm" >14 nm</option>
+														<option value="22nm" >22 nm</option>
+														<option value="28nm" >28 nm</option>
+														<option value="32nm" >32 nm</option>
+														<option value="40nm" >40 nm</option>
+														<option value="45nm" >45 nm</option>
+														<option value="65nm" >65 nm</option>
+														<option value="90nm" >90 nm</option>
+														<option value="130nm" >130 nm</option>
+														<option value="180nm" >180 nm</option>
                         </select>
                     </div>
                 </div>
@@ -204,35 +202,34 @@
                     <label class="col-md-4 control-label" for="PROCESSOR_SOCKET"><%=("CPU Socket:")%></label>
                     <div class="col-md-4">
                         <select id="PROCESSOR_SOCKET" name="PROCESSOR_SOCKET" class="form-control">
-                              <option value="<%= rCPUDB!PROCESSOR_SOCKET%>" selected><%= rCPUDB!PROCESSOR_SOCKET%></option>
 														<option value="AMD Socket 754" >AMD Socket 754</option>
 														<option value="AMD Socket 939" >AMD Socket 939</option>
-														<option value="AMD Socket 940" >AMD Socket 940 (92)</option>
-														<option value="AMD Socket A" >AMD Socket A (84)</option>
-														<option value="AMD Socket AM2" >AMD Socket AM2 (85)</option>
-														<option value="AMD Socket AM2+" >AMD Socket AM2+ (35)</option>
-														<option value="AMD Socket AM3" >AMD Socket AM3 (103)</option>
-														<option value="AMD Socket AM3+" >AMD Socket AM3+ (31)</option>
-														<option value="AMD Socket AM4" >AMD Socket AM4 (1)</option>
-														<option value="AMD Socket C32" >AMD Socket C32 (8)</option>
+														<option value="AMD Socket 940" >AMD Socket 940</option>
+														<option value="AMD Socket A" >AMD Socket A</option>
+														<option value="AMD Socket AM2" >AMD Socket AM2</option>
+														<option value="AMD Socket AM2+" >AMD Socket AM2+</option>
+														<option value="AMD Socket AM3" >AMD Socket AM3</option>
+														<option value="AMD Socket AM3+" >AMD Socket AM3+</option>
+														<option value="AMD Socket AM4" >AMD Socket AM4</option>
+														<option value="AMD Socket C32" >AMD Socket C32</option>
 														<option value="AMD Socket F" >AMD Socket F (4)</option>
-														<option value="AMD Socket FM1" >AMD Socket FM1 (18)</option>
-														<option value="AMD Socket FM2" >AMD Socket FM2 (19)</option>
-														<option value="AMD Socket FM2+" >AMD Socket FM2+ (4)</option>
-														<option value="AMD Socket FP2" >AMD Socket FP2 (11)</option>
-														<option value="AMD Socket Fr2" >AMD Socket Fr2 (1)</option>
-														<option value="AMD Socket FS1" >AMD Socket FS1 (15)</option>
-														<option value="AMD Socket FS1r2" >AMD Socket FS1r2 (8)</option>
-														<option value="AMD Socket FT1" >AMD Socket FT1 (14)</option>
-														<option value="AMD Socket FT3" >AMD Socket FT3 (11)</option>
-														<option value="AMD Socket G34" >AMD Socket G34 (14)</option>
-														<option value="AMD Socket S1" >AMD Socket S1 (17)</option>
-														<option value="Intel BGA 437" >Intel BGA 437 (17)</option>
-														<option value="Intel BGA 441" >Intel BGA 441 (8)</option>
-														<option value="Intel BGA 518" >Intel BGA 518 (9)</option>
-														<option value="Intel BGA 559" >Intel BGA 559 (8)</option>
-														<option value="Intel BGA 617" >Intel BGA 617 (7)</option>
-														<option value="Intel BGA 676" >Intel BGA 676 (8)</option>
+														<option value="AMD Socket FM1" >AMD Socket FM1</option>
+														<option value="AMD Socket FM2" >AMD Socket FM2</option>
+														<option value="AMD Socket FM2+" >AMD Socket FM2+</option>
+														<option value="AMD Socket FP2" >AMD Socket FP2</option>
+														<option value="AMD Socket Fr2" >AMD Socket Fr2</option>
+														<option value="AMD Socket FS1" >AMD Socket FS1</option>
+														<option value="AMD Socket FS1r2" >AMD Socket FS1r2</option>
+														<option value="AMD Socket FT1" >AMD Socket FT1</option>
+														<option value="AMD Socket FT3" >AMD Socket FT3</option>
+														<option value="AMD Socket G34" >AMD Socket G34</option>
+														<option value="AMD Socket S1" >AMD Socket S1</option>
+														<option value="Intel BGA 437" >Intel BGA 437</option>
+														<option value="Intel BGA 441" >Intel BGA 441</option>
+														<option value="Intel BGA 518" >Intel BGA 518</option>
+														<option value="Intel BGA 559" >Intel BGA 559</option>
+														<option value="Intel BGA 617" >Intel BGA 617</option>
+														<option value="Intel BGA 676" >Intel BGA 676</option>
 														<option value="Intel BGA 951" >Intel BGA 951 (3)</option>
 														<option value="Intel BGA 956" >Intel BGA 956 (6)</option>
 														<option value="Intel BGA1023" >Intel BGA1023 (75)</option>
@@ -270,11 +267,10 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="PROCESSOR_SOCKET_IMAGE"><%=("CPU Socket image:")%></label>
                     <div class="col-md-6">
-                        <input id="PROCESSOR_SOCKET_IMAGE" name="PROCESSOR_SOCKET_IMAGE" type="text" value="<%= rCPUDB!PROCESSOR_SOCKET_IMAGE%>" class="form-control input-md">
+                        <input id="PROCESSOR_SOCKET_IMAGE" name="PROCESSOR_SOCKET_IMAGE" type="text" class="form-control input-md">
                     </div>
                 </div>
-               
-                <!--
+                               <!--
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="account">Choose Account</label>
                     <div class="col-md-6">

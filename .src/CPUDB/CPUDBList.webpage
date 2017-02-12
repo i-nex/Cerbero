@@ -51,7 +51,7 @@
          </table>
         </div>
         <ul class="list-group">
-          <li class="list-group-item"><a href="?action=add" class="btn btn-default btn-xs" role="button"><i class="fa fa-plus-square"></i> <%=("Create new post")%></a></li>
+          <li class="list-group-item"><a href="?action=add" class="btn btn-default btn-xs" role="button"><i class="fa fa-plus-square"></i> <%=("Add new CPU")%></a></li>
           <li class="list-group-item">
             <form class="navbar-form" role="search">
               <div class="input-group">

@@ -11,6 +11,8 @@
 <<CPUDBView>>
 <%Else If Request["action"] = "edit" Then%>
 <<CPUDBEdit>>
+<%Else If Request["action"] = "add" Then%>
+<<CPUDBAdd>>
 <%Else%>
 <<CPUDBList>>
 <%Endif%>

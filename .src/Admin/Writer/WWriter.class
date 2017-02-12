@@ -2,7 +2,6 @@
 
 Public rPosts As Result
 Public Sub _new()
-  Dim POSTDATE As String
   'Print Request.Post["post_date"] & " " & Request.Post["post_time"]
   If Request.Method = "POST" Then
     If IsInteger(Request.Post["post_id"]) Then
@@ -18,12 +17,7 @@ Public Sub _new()
       rPosts!post_tags = Request.Post["post_tags"]
       rPosts!post_name = Request.Post["post_name"]
       rPosts!post_author = Request.Post["post_author"]
-      Print Now
-      POSTDATE = URL.UnQuote(Replace(Request.Post["post_date"], "\n", ""))
-      'Print CFloat(Val(Request.Post["post_date"]))
-      'Print URL.UnQuote(Request.Post["post_date"])
-      'Print CDate(CInteger(Replace(Request.Post["post_date"], ".", "") & Replace(Request.Post["post_time"], ":", "")))
-      rPosts!post_date = POSTDATE
+      rPosts!post_date = CDate(Request.Post["post_date"])
       rPosts!post_type = Request.Post["post_type"]
       rPosts!post_status = Request.Post["post_status"]
       rPosts.Update
@@ -43,8 +37,7 @@ Public Sub _new()
       rPosts!post_tags = Request.Post["post_tags"]
       rPosts!post_name = Request.Post["post_name"]
       rPosts!post_author = Request.Post["post_author"]
-      'rPosts!post_date = Now
-      'rPosts!post_date = Request.Post["post_date"] & " " & Request.Post["post_time"]
+      rPosts!post_date = CDate(Request.Post["post_date"])
       rPosts!post_type = Request.Post["post_type"]
       rPosts!post_status = Request.Post["post_status"]
       rPosts.Update
